@@ -4,6 +4,10 @@ import style from "./style.module.css";
 import { Fb, Email, Inst, X, Phone, EmailIcon } from "@/common/svg/contact";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useMutation } from "react-query";
+import axios from "axios";
+import { LoadingOutlined } from "@ant-design/icons";
+import { Flex, Spin } from "antd";
 
 type Inputs = {
   username: string;
@@ -22,29 +26,27 @@ const Contact = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<Inputs>();
 
-  // const sendMessageMutation = useMutation(
-  //   (data: Inputs) => axios.post(`/api/contact`, { ...data }),
-  //   {
-  //     onSuccess: (data: any) => {
-  //       return data;
-  //     },
-  //     onError: (error: any) => {
-  //       console.error("Registration error:", error);
-  //       return error;
-  //     },
-  //   }
-  // );
-
-  // const { error, data, isLoading, isError, isSuccess } = sendMessageMutation;
+  const sendMessageMutation = useMutation(
+    (data: Inputs) => axios.post(`/api/contact`, { ...data }),
+    {
+      onSuccess: (data: any) => {
+        return data;
+      },
+      onError: (error: any) => {
+        console.error("Registration error:", error);
+        return error;
+      },
+    }
+  );
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
-    // sendMessageMutation.mutate(data);
+    sendMessageMutation.mutate(data);
   };
+
+  const { error, data, isLoading, isError, isSuccess } = sendMessageMutation;
 
   return (
     <section className={`${style.contact}  bg-white p-5`}>
@@ -137,8 +139,8 @@ const Contact = () => {
                   message: "გრაფა ცარიელია",
                 },
                 minLength: {
-                  value: 10,
-                  message: "მინიმუმ 10 ასო",
+                  value: 5,
+                  message: "მინიმუმ 5 ასო",
                 },
               })}
               placeholder="Message.."
@@ -147,9 +149,31 @@ const Contact = () => {
               rows={6}
             />
             <button type="submit" className={`${style.submitBtn}`}>
-              Send
+              {isLoading ? (
+                <Spin
+                  indicator={<LoadingOutlined spin />}
+                  size="large"
+                  style={{ color: "#fff" }}
+                />
+              ) : (
+                "Send"
+              )}
             </button>
           </form>
+          {isSuccess && (
+            <div className="mt-3">
+              <p style={{ color: "var(--black-color" }}>
+                Email sent successfully
+              </p>
+            </div>
+          )}
+          {isError && (
+            <div className="mt-3">
+              <p style={{ color: "var(--black-color" }}>
+                Something went wrong, try again
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </section>
