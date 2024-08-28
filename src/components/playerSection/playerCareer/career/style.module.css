@@ -1,0 +1,89 @@
+.infoItem {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 90px 1fr 1fr repeat(6, 40px);
+  border-bottom: 1px solid var(--standings-border-color);
+}
+
+.infoIndex {
+  border-radius: 5px;
+  color: var(--league-color);
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.infoItem a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--black-color);
+}
+
+.infoTitle {
+  font-size: 13px;
+  color: var(--league-color);
+}
+
+.infoNumber {
+  font-size: 12px;
+  color: var(--league-color);
+  text-align: center;
+}
+.tournamentName {
+  font-size: 13px;
+  color: var(--league-color);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
+}
+.infoIcon {
+  width: 18px;
+  height: 18px;
+}
+
+.infoIcon img {
+  width: 20px;
+  height: 18px;
+}
+
+@media only screen and (max-width: 850px) {
+  .tournamentName {
+    text-align: left;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .infoTitle {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .infoItem {
+    grid-template-columns: 50px 1fr repeat(6, 25px);
+  }
+  .tournamentName {
+    display: none;
+  }
+  .infoIndex {
+    margin-right: 0.5rem;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .infoItem {
+    grid-template-columns: 40px 1fr repeat(6, 25px);
+  }
+
+  .infoIndex {
+    margin-right: 0.3rem;
+    font-size: 11px;
+  }
+  .infoIcon {
+    margin-right: 0.3rem;
+  }
+  .infoTitle {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,9 @@
+.favorites {
+  max-width: 705px;
+}
+
+@media only screen and (max-width: 965px) {
+  .favorites {
+    max-width: 100%;
+  }
+}

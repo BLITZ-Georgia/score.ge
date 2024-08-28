@@ -1,0 +1,33 @@
+.menu li {
+  background-color: var(--grey-color);
+  color: var(--navItems-color);
+  padding: 6px 10px;
+  border-radius: 10px;
+}
+
+.menu li button {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.menu li:hover {
+  background-color: #0092c1;
+  color: #fff;
+}
+
+.menu .activeMenu {
+  background-color: #0092c1;
+  color: #fff;
+}
+
+@media only screen and (max-width: 460px) {
+  .menu ul {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 12px;
+  }
+
+  .menu ul li {
+    width: max-content;
+  }
+}

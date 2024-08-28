@@ -1,0 +1,51 @@
+.navLink {
+  padding: 5px 10px;
+  border-radius: 10px;
+  background-color: var(--grey-color);
+}
+
+.navLink:hover {
+  background-color: #0092c1;
+}
+
+.navLink:hover p {
+  color: #fff;
+}
+
+.navLink p {
+  font-size: 13px;
+  color: var(--navItems-color);
+  font-weight: 600;
+}
+
+.selected {
+  background-color: #0092c1;
+}
+.selected p {
+  color: #fff;
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+@media only screen and (max-width: 390px) {
+  .navLinkItems {
+    width: 100%;
+    display: flex;
+    row-gap: 11px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .navLink p {
+    font-size: 11px;
+  }
+
+  .navLink {
+    padding: 5px 8px;
+    width: max-content;
+  }
+}

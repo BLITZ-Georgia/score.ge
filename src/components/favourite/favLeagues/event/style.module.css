@@ -1,0 +1,89 @@
+.match {
+  display: grid;
+  grid-template-columns: 3fr 1fr 75px;
+  width: 100%;
+}
+.matchContainer {
+  border-bottom: 1px solid var(--matches-border-color);
+  grid-template-columns: 18px 1fr;
+}
+
+.matchesItems p {
+  font-size: 13px;
+  color: var(--match-color);
+  font-weight: 500;
+}
+
+.match h4 {
+  color: var(--match-color);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.predictionTitleColor {
+  color: var(--navItems-color);
+}
+
+.starIcon {
+  cursor: pointer;
+}
+
+.starIcon svg {
+  cursor: pointer;
+}
+.starIcon:hover path {
+  fill: #ffcd00;
+  stroke: #ffcd00;
+}
+.favorited {
+  transition: all 0.3s ease;
+}
+
+.favorited path {
+  fill: #ffcd00;
+  stroke: #ffcd00;
+}
+
+.moreBtn {
+  background-color: var(--white-color);
+  border: 1px solid var(--button-border-color);
+  border-radius: 5px;
+}
+
+.moreBtn p {
+  color: var(--button-text-color);
+  font-size: 10px;
+}
+
+.moreBtn:hover {
+  background-color: #0092c1;
+  border: none;
+}
+
+.moreBtn:hover p {
+  color: #fff;
+}
+
+.scoreInfo p {
+  color: var(--match-score-color);
+}
+
+@media only screen and (max-width: 525px) {
+  .dateInfo {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .moreBtn {
+    display: none;
+  }
+  .match {
+    display: grid;
+    grid-template-columns: 3fr 20px;
+    width: 100%;
+  }
+  .starIcon {
+    margin-right: 1rem;
+  }
+}

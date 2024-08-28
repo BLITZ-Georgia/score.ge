@@ -1,0 +1,44 @@
+.playerInfo {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  max-height: 172px;
+  height: 100%;
+}
+
+.img {
+  box-shadow: 0 0 0 1px #eee;
+  border-radius: 12px;
+  height: 82px;
+  width: 82px;
+  align-self: flex-start;
+}
+
+.img img {
+  object-fit: contain;
+}
+
+.info h3 {
+  color: var(--title-color);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.info p {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--navItems-color);
+}
+
+.info p span {
+  font-weight: 500;
+}
+
+@media only screen and (max-width: 395px) {
+  .playerInfo {
+    padding-left: 0;
+    margin-top: 14px;
+  }
+  .playerTitles {
+    flex-direction: column;
+  }
+}

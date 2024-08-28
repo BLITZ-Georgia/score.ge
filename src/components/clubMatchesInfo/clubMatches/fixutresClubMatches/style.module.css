@@ -1,0 +1,24 @@
+.clubmatches {
+  /* margin-top: 8px; */
+  margin-bottom: 8px;
+}
+
+.selector div {
+  width: 100% !important;
+  color: var(--black-color) !important;
+}
+
+.select div {
+  background: var(--background--color) !important;
+  border: 1px solid var(--selector-border) !important;
+}
+
+.select span {
+  color: var(--black-color);
+}
+.matchesTitle {
+  color: var(--title-color);
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}

@@ -1,0 +1,163 @@
+.stadium {
+  background: url("/images/match/stadium.jpg");
+  width: 100%;
+  /* height: 100%; */
+  height: 1180px;
+  background-size: cover;
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.title {
+  background-color: var(--grey-color);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 5px;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.noData,
+.title p {
+  color: var(--league-color);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.teamOne {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.teamTwo {
+  padding-bottom: 15px;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.teamTitle {
+  font-weight: bold;
+  font-size: 14px;
+  color: #fff;
+  padding-left: 22px;
+  letter-spacing: 1px;
+}
+
+.teamTwoPlayers,
+.teamOnePlayers {
+  display: flex;
+  flex-direction: column;
+  row-gap: 50px;
+  justify-items: center;
+  align-items: center;
+}
+
+.teamTwoPlayers {
+  flex-direction: column-reverse;
+}
+
+.line {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.player {
+  width: 45px;
+  height: 45px;
+  background-color: #003546;
+  color: #fff;
+  text-align: center;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 15px;
+  position: relative;
+}
+.playerName {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: -20px;
+}
+
+.playerName p {
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap;
+  color: #fff;
+}
+
+.teamTwo .player {
+  background-color: #fff;
+  color: #003546;
+}
+
+@media only screen and (max-width: 600px) {
+  .lineUp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .player {
+    width: 15px;
+    height: 15px;
+    font-size: 10px;
+  }
+  .teamTitle {
+    font-size: 10px;
+  }
+
+  .line {
+    margin: 0;
+    width: 92%;
+  }
+  .stadium {
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: auto;
+    max-width: 245px;
+    width: 100%;
+  }
+  .teamOne {
+    padding-top: 0;
+  }
+  .teamTwo {
+    padding-bottom: 0;
+  }
+  .teamOnePlayers {
+    padding-top: 0.5rem;
+    row-gap: 30px;
+  }
+  .teamTwoPlayers {
+    padding-top: 0.3rem;
+    row-gap: 25px;
+  }
+  .playerName p {
+    font-size: 9px;
+  }
+
+  .teamOnePlayers .player {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .teamOnePlayers .player .playerName {
+    bottom: 15px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .stadium {
+    background-size: cover;
+  }
+}

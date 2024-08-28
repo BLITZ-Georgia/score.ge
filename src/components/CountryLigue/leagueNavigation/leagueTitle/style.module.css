@@ -1,0 +1,72 @@
+.leagueTitle {
+  padding-bottom: 15px;
+}
+
+.img {
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--event-menu-border);
+  border-radius: 10px;
+  margin-right: 18px;
+}
+.img img {
+  border-radius: 12px;
+}
+
+.title span {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.title span:hover:after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: #99999926;
+  top: 0;
+  left: 0;
+  border-radius: 50px;
+}
+.notActive svg path {
+  color: #999 !important;
+  fill: #999;
+}
+
+.activePin:after {
+  background-color: #0092c1;
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 0;
+  left: 0;
+  border-radius: 50px;
+  opacity: 20%;
+}
+.activePin svg {
+  transform: rotate(317deg);
+}
+
+.activePin:hover:after {
+  background-color: #0092c1;
+}
+
+.title h3 {
+  font-size: 17px;
+  color: var(--black-color);
+  font-weight: bold;
+}
+
+.title p {
+  color: var(--navItems-color);
+  font-weight: 600;
+  font-size: 13px;
+}

@@ -1,0 +1,226 @@
+.myTeamsTitle {
+  border-bottom: 1px solid var(--matches-titles-color);
+  margin-bottom: 10px;
+}
+
+.myTeamsTitle h2 {
+  font-size: 12.5px;
+  padding-top: 4px;
+  letter-spacing: 0.5px;
+  color: var(--user-list-color);
+}
+
+.teams h2 {
+  color: #0092c1;
+  font-size: 12.5px;
+  cursor: pointer;
+  color: var(--user-list-color);
+}
+
+.teams:hover h2 {
+  color: #0092c1;
+}
+
+.teams:hover path {
+  fill: #0092c1;
+}
+
+.modalTitle {
+  border-bottom: 1px solid var(--grey-color);
+  font-size: 18px;
+  font-weight: 700;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.modalInputSearch {
+  margin-bottom: 20px;
+}
+
+.modalInputSearch input {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--input-background-color);
+  color: var(--input--color);
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  box-sizing: border-box;
+  flex: 1;
+  font-family: inherit;
+  font-size: 13px;
+  height: 36px;
+  margin: 0;
+  outline: 0;
+  padding-left: 12px;
+  padding-right: 24px;
+  border-radius: 8px;
+  border: 1px solid var(--grey-color);
+}
+
+.text {
+  color: var(--match-league-title-color);
+  margin: 0 0 16px 0;
+  font-size: 12px;
+}
+
+.searchSelector .ant-select-selector {
+  border: none !important;
+  outline: none !important;
+}
+
+.searchedItemLink {
+  display: flex;
+}
+.searchedItemLink:hover {
+  background-color: rgb(200 205 205 / 20%);
+}
+
+.searchImage {
+  align-items: center;
+  background: var(--white-color);
+  border: 1px solid var(--grey-color);
+  border: 1px solid var(--grey-color);
+  display: flex;
+  grid-area: participantImage;
+  height: 36px;
+  justify-content: center;
+  width: 36px;
+}
+
+.searchImage img {
+  height: 30px;
+  object-fit: cover;
+  width: 30px;
+}
+
+.searchInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.searchInfo h4 {
+  color: var(--title-color);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.searchInfo p {
+  color: var(--navItems-color);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.searchInput input::placeholder {
+  font-size: 12px;
+  color: #878d8e;
+}
+
+.serachItem {
+  padding: 8px;
+  width: 100%;
+  column-gap: 12px;
+  display: flex;
+  align-items: center;
+  padding-left: 0;
+}
+
+.starIcon {
+  position: absolute;
+  right: 6px;
+  top: 13px;
+  z-index: 22222222;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.starIcon:hover path {
+  fill: #ffcd00;
+  stroke: #ffcd00;
+}
+
+.added .starIcon path {
+  fill: #ffcd00;
+  stroke: #ffcd00;
+}
+
+.userListItems {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.favItem {
+  align-items: center;
+  display: flex;
+  margin-bottom: 4px;
+  min-height: 26px;
+  overflow: hidden;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  transition: all 0.3 ease;
+}
+
+.favItem a {
+  align-items: center;
+  color: var(--userTeams-league-color);
+  display: flex;
+  font-size: 13px;
+  column-gap: 8px;
+}
+
+.favItemStar {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+
+.favItemStar:hover:before {
+  background-color: #ffcd00;
+  opacity: 0.15;
+}
+
+.favItemStar:before {
+  background-color: transparent;
+  border-radius: 50%;
+  content: "";
+  height: 24px;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  transition-duration: 0.18s;
+  transition-timing-function: ease-in-out;
+  width: 24px;
+}
+
+.favItemStar path {
+  fill: #ffcd00;
+  stroke: #ffcd00;
+}
+
+.favItem:hover .favItemStar {
+  display: flex;
+}
+
+.favItem:hover {
+  background-color: rgb(200 205 205 / 30%);
+}
+
+.modalHeader,
+.modalContent {
+  background-color: var(--white-color) !important;
+}
+.modalTitle {
+  color: var(--black-color) !important;
+}
+
+@media only screen and (max-width: 965px) {
+  .userTeamContainer {
+    margin-bottom: 8px;
+  }
+}

@@ -1,0 +1,10 @@
+.textColor {
+  color: var(--black-color);
+}
+
+@media only screen and (max-width: 460px) {
+  .info {
+    flex-direction: column;
+    row-gap: 8px;
+  }
+}

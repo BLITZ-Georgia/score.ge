@@ -1,0 +1,38 @@
+.title {
+  font-size: 15px;
+  color: var(--title-color);
+  margin-bottom: 14px;
+}
+
+.standings {
+  border-bottom: 1px solid var(--navItems-color);
+}
+
+.showMatchesBtn {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--navItems-color);
+}
+
+.moreMatches {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 17px;
+  padding-bottom: 6px;
+}
+
+.moreMatches button {
+  color: var(--show-matches-color);
+  border-bottom: 1px solid var(--show-matches-color);
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.fixMoreMatchesBtn button {
+  border-bottom: 0;
+}
+
+.fixMoreMatchesBtn button:hover {
+  border-bottom: 1px solid var(--show-matches-color);
+}

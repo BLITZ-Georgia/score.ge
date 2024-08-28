@@ -1,0 +1,110 @@
+.nav button {
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: 5px;
+  background-color: var(--grey-color);
+  color: var(--navItems-color);
+  font-weight: 600;
+}
+.nav {
+  background-color: var(--grey-color);
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  padding: 8px;
+  margin-bottom: 1px;
+}
+
+.nav .active {
+  pointer-events: none;
+  background-color: var(--white-color);
+  color: var(--userTeams-league-color);
+}
+
+.nav button:hover {
+  background-color: var(--white-color);
+  color: var(--userTeams-league-color);
+}
+
+.selector div {
+  width: 100% !important;
+}
+
+.seeAllBtn {
+  padding-bottom: 16px;
+}
+
+.seeAllBtn button {
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--show-matches-color);
+  border-bottom: 1px solid var(--show-matches-color);
+}
+
+.titles {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 90px 1fr 1fr repeat(6, 40px);
+  background-color: var(--grey-color);
+}
+.titles p {
+  font-size: 11px;
+  color: var(--navItems-color);
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 6px 0;
+}
+.titles p:nth-child(2) {
+  justify-content: flex-start;
+  padding-left: 10px;
+}
+
+.card {
+  width: 11px;
+  height: 14px;
+  margin-left: 3px;
+  border-radius: 4px;
+  justify-self: center;
+}
+
+.cardYellow {
+  background-color: yellow;
+}
+
+.cardRed {
+  background-color: red;
+}
+
+.matchesTitle {
+  color: var(--title-color);
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.iconMenu {
+  font-size: 13px !important;
+}
+
+@media only screen and (max-width: 625px) {
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .titleCompetition {
+    display: none !important;
+  }
+
+  .titles {
+    grid-template-columns: 50px 1fr repeat(6, 25px);
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .infoItem {
+    grid-template-columns: 40px 1fr repeat(6, 25px);
+  }
+}

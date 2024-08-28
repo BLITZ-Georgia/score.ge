@@ -1,0 +1,118 @@
+.teamInfo {
+  padding-top: 20px;
+  border-top: 1px solid var(--event-matches-border);
+  border-bottom: 1px solid var(--event-matches-border);
+  padding-bottom: 20px;
+}
+.infoImage {
+  padding: 14px;
+  border: 1px solid var(--event-matches-border);
+  border-radius: 10px;
+  margin-bottom: 6px;
+}
+
+.infoItem {
+  position: relative;
+  max-width: 85px;
+}
+
+.infoItem h3 {
+  font-size: 14px;
+  color: var(--title-color);
+}
+
+.infoTime p {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--param-color);
+}
+
+.infoTime {
+  color: var(--match-league-title-color);
+  font-weight: 800;
+  text-align: center;
+}
+
+.infoText {
+  margin-bottom: 16px;
+}
+
+.infoText p {
+  font-size: 11px;
+  color: var(--navItems-color);
+  background-color: #eeeeee;
+  border-radius: 4px;
+  padding: 8px 13px;
+  display: flex;
+  align-items: center;
+}
+
+.stageTitle {
+  color: #0092c1 !important;
+  margin-top: 10px;
+}
+
+.infoItem a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--black-color);
+}
+.infoImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.infoTime .live,
+.live h3 {
+  color: #ff0046;
+}
+.live h4 svg path {
+  fill: #ff0046;
+}
+
+.starIcon {
+  cursor: pointer;
+  position: absolute;
+  left: -35px;
+  top: 32%;
+}
+.starIconRight {
+  left: 105px;
+}
+
+.starIcon svg {
+  cursor: pointer;
+}
+.starIcon:hover path {
+  fill: #ffcd00;
+  stroke: #ffcd00;
+}
+.favorited {
+  transition: all 0.3s ease;
+}
+
+.favorited path {
+  fill: #ffcd00;
+  stroke: #ffcd00;
+}
+
+@media only screen and (max-width: 400px) {
+  .infoTime h3 {
+    font-size: 30px;
+  }
+  .infoTime p {
+    font-size: 11px;
+  }
+  .infoItem {
+    max-width: 100%;
+  }
+  .infoItem h3 {
+    font-size: 12px;
+  }
+  .infoImage {
+    padding: 8px;
+  }
+  .starIcon {
+    display: none;
+  }
+}

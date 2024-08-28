@@ -1,0 +1,89 @@
+.prediction {
+  /* max-width: 252px; */
+  width: 100%;
+}
+
+.predictionItem {
+  border-radius: 10px;
+}
+
+.predictionItem h3 {
+  color: var(--match-league-title-color);
+}
+
+.seeAlLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid var(--button-border-color);
+  padding: 14px;
+}
+
+.seeAlLink a {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--navItems-color);
+}
+
+.seeAlLink a:hover {
+  color: #0092c1;
+}
+
+@media only screen and (max-width: 965px) {
+  .predictionItem {
+    margin-bottom: 15px;
+  }
+
+  .predictionList {
+    display: flex;
+    overflow-x: scroll;
+    column-gap: 9px;
+    justify-content: space-between;
+    padding: 0;
+    padding-bottom: 0 !important;
+  }
+
+  .predictionList::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
+
+  .predictionList div {
+    margin-bottom: 0;
+  }
+
+  .predictionList img {
+    /* width: 100%; */
+    border-radius: 10px;
+    min-width: 275px;
+    max-width: 275px;
+    height: 155px;
+    object-fit: cover;
+  }
+
+  .prediction {
+    background-color: var(--white-color);
+    padding: 15px;
+    padding-right: 0;
+  }
+  .adImgSection {
+    padding-right: 15px;
+    max-height: 100px;
+    height: 100%;
+    margin-bottom: 16px;
+  }
+  .adImgSection img {
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .activePrediction {
+    display: flex;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .adImgSection img {
+    object-fit: contain;
+  }
+}

@@ -1,0 +1,40 @@
+.navLink {
+  padding: 5px 10px;
+  background-color: var(--grey-color);
+  border-radius: 10px;
+}
+
+.navLink:hover {
+  background-color: #0092c1;
+}
+
+.navLink:hover p {
+  color: #fff;
+}
+
+.navLink p {
+  font-size: 13px;
+  color: var(--navItems-color);
+  font-weight: 600;
+}
+
+.selected {
+  background-color: #0092c1;
+}
+.selected p {
+  color: #fff;
+}
+
+@media only screen and (max-width: 550px) {
+  .navLink {
+    white-space: nowrap;
+  }
+  .navContainer {
+    padding-bottom: 10px;
+    overflow-x: auto;
+  }
+
+  .navContainer::-webkit-scrollbar {
+    height: 2px;
+  }
+}

@@ -1,0 +1,230 @@
+.match {
+  display: grid;
+  grid-template-columns: 2fr 50px 1.2fr;
+  align-items: center;
+  width: 100%;
+}
+.matchContainer {
+  border-bottom: 1px solid var(--matches-border-color);
+  grid-template-columns: 18px 1fr;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s ease;
+}
+.matchContainer:hover {
+  background-color: #c8cdcd33;
+}
+
+.matchesItems p {
+  font-size: 13px;
+  color: var(--match-color);
+  font-weight: 500;
+}
+
+.match h4 {
+  color: var(--match-color);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.starIcon {
+  cursor: pointer;
+}
+
+.starIcon svg {
+  cursor: pointer;
+}
+.starIcon:hover path {
+  fill: #ffcd00;
+  stroke: #ffcd00;
+}
+.favorited {
+  transition: all 0.3s ease;
+}
+
+.favorited path {
+  fill: #ffcd00;
+  stroke: #ffcd00;
+}
+
+.matchInfoTitle {
+  display: flex;
+
+  column-gap: 16px;
+}
+
+.scoreInfo p {
+  color: #122e37;
+}
+
+.dateTitle h4 {
+  color: var(--navItems-color);
+}
+
+.title {
+  background-color: var(--grey-color);
+  border-radius: 4px;
+  color: var(--navItems-color);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 12px;
+  text-transform: uppercase;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 2fr 50px 1.2fr;
+}
+
+.title p svg {
+  font-size: 14px;
+}
+
+.moreBtn p {
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  padding-top: 1px;
+}
+
+.moreMatches {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 17px;
+  padding-bottom: 6px;
+}
+
+.moreMatches button {
+  color: var(--show-matches-color);
+  border-bottom: 1px solid var(--show-matches-color);
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.D {
+  background-color: #f3a000;
+}
+
+.W {
+  background-color: #00a83f;
+}
+
+.L {
+  background-color: #dc0000;
+}
+
+.winner {
+  font-weight: bolder !important;
+}
+
+.WO {
+  background: linear-gradient(to bottom right, #00a83f 80%, #f3a000 20%);
+}
+
+.card {
+  width: 11px;
+  height: 14px;
+  margin-left: 3px;
+  border-radius: 4px;
+}
+
+.cardYellow {
+  background-color: yellow;
+}
+
+.cardRed {
+  background-color: red;
+}
+
+.titlesMenu {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  align-items: center;
+  justify-items: center;
+}
+
+.itemsStatistic {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  align-items: center;
+  justify-items: center;
+}
+
+.itemsStatistic p {
+  font-size: 12px;
+  color: var(--navItems-color);
+  font-weight: 500;
+}
+
+.type6 {
+  display: grid;
+  grid-template-columns: 1fr 35px;
+  align-items: center;
+  justify-items: center;
+}
+
+.type6 p {
+  color: var(--navItems-color);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.winners {
+  border-radius: 4px;
+  display: flex;
+  height: 20px;
+  justify-content: center;
+  position: relative;
+  width: 20px;
+  align-items: center;
+}
+
+.winners p {
+  color: #fff;
+  font-size: 11px;
+}
+
+.matchesTitle {
+  color: var(--title-color);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 530px) {
+  .matchInfoTitle {
+    column-gap: 8px;
+  }
+  .dateTitle {
+    margin-right: 0.7rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .matchInfoTitle {
+    column-gap: 8px;
+  }
+  .dateTitle {
+    display: none;
+  }
+
+  .matchesItems div {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+  }
+
+  .match {
+    grid-template-columns: 1fr 30px 1fr;
+  }
+
+  .title {
+    grid-template-columns: 1fr 30px 1fr;
+  }
+}

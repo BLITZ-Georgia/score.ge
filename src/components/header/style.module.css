@@ -1,0 +1,52 @@
+.header {
+  background-color: #003546;
+  height: 75px;
+  transition: all 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 57px;
+}
+
+.mainMenuContainer {
+  padding-right: 0.75rem;
+}
+
+@media only screen and (max-width: 965px) {
+  .fixed {
+    height: 55px;
+  }
+
+  .header {
+    height: 55px;
+    padding: 10px 0;
+  }
+  .mainLogo {
+    width: 120px;
+  }
+  .mobileResponsiveLogo {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 4%;
+  }
+  .mainMenuContainer {
+    justify-content: center;
+    padding-right: 0;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .mobileResponsiveLogo {
+    display: grid;
+    grid-template-columns: 0.8fr 1fr;
+    column-gap: 6px;
+  }
+  .mainMenuContainer {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,22 @@
+.menu {
+  border-radius: 0.5rem;
+  margin-bottom: 12px;
+}
+
+.nav button {
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: 5px;
+  background-color: var(--grey-color);
+  color: var(--navItems-color);
+  font-weight: 600;
+}
+
+.nav .active {
+  background-color: #0092c1;
+  color: #fff;
+}
+
+.selector div {
+  width: 100% !important;
+}

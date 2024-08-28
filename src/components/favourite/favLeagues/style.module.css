@@ -1,0 +1,124 @@
+.showMatcher {
+  display: flex;
+  flex-direction: column;
+}
+
+.standings {
+  border-bottom: 1px solid var(--navItems-color);
+}
+
+.displayText {
+  position: relative;
+}
+
+.displayText:hover::before {
+  content: "";
+  position: absolute;
+  border-bottom: 1px solid var(--navItems-color);
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+}
+
+.premierTitle {
+  background-color: var(--leagueTitle-color);
+  border-radius: 10px;
+}
+
+.premierTitle h2,
+.premierTitle a {
+  font-size: 12.5px;
+  color: var(--league-color);
+  font-weight: 600;
+}
+.premierTitle a {
+  margin-left: 2px;
+}
+.premierTitle a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--black-color);
+}
+
+.starIcon:hover path {
+  fill: #ffcd00;
+  stroke: #ffcd00;
+}
+
+.favorited {
+  transition: all 0.3s ease;
+}
+
+.favorited path {
+  fill: #ffcd00;
+  stroke: #ffcd00;
+}
+
+.arrowIconBtn svg {
+  transform: rotate(180deg);
+}
+
+.arrowIconRotate svg {
+  transform: rotate(0deg) !important;
+}
+
+.showMatchesBtn {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--navItems-color);
+}
+
+.pinImage {
+  width: 32px;
+  height: 32px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.pinImage:hover {
+  background: #99999926;
+  border-radius: 50px;
+}
+
+.pinImage img {
+  width: 14px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.pinActive:hover {
+  background-color: #0787fa26 !important;
+}
+
+@media only screen and (max-width: 525px) {
+  .displayText {
+    display: none;
+  }
+
+  .standings {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .nameLink {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 170px;
+    width: 100%;
+    font-size: 11px !important;
+  }
+  .starIcon {
+    margin-right: 0.4rem;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .nameLink {
+    max-width: 130px;
+  }
+}

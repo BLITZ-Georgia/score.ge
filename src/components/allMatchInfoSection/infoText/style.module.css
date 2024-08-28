@@ -1,0 +1,7 @@
+.infoText p {
+  color: var(--navItems-color);
+}
+
+.infoText p:first-child {
+  margin-bottom: 2px;
+}

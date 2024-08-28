@@ -1,0 +1,9 @@
+.title {
+  font-size: 15px;
+  color: var(--title-color);
+  margin-bottom: 14px;
+}
+
+.standings {
+  border-bottom: 1px solid var(--navItems-color);
+}

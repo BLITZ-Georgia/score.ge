@@ -1,0 +1,24 @@
+@media only screen and (max-width: 965px) {
+  .ad {
+    background-color: var(--white-color);
+    padding: 15px;
+    margin: 0;
+  }
+}
+.ad img {
+  border-radius: 15px;
+}
+
+.mobileAd {
+  height: 100px;
+}
+
+.mobileAd img {
+  object-fit: cover;
+}
+
+@media only screen and (max-width: 400px) {
+  .mobileAd img {
+    object-fit: contain;
+  }
+}

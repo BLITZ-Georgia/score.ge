@@ -1,0 +1,97 @@
+.nav button {
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: 5px;
+  background-color: var(--grey-color);
+  color: var(--navItems-color);
+  font-weight: 600;
+}
+
+.nav .active {
+  background-color: #0092c1;
+  color: #fff;
+}
+
+.selector div {
+  width: 100% !important;
+}
+
+.infoItemSection {
+  border: 1px solid var(--grey-color);
+  border-radius: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.seeAllBtn {
+  padding-bottom: 16px;
+}
+
+.seeAllBtn button {
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--show-matches-color);
+  border-bottom: 1px solid var(--show-matches-color);
+}
+
+.titles {
+  display: grid;
+  align-items: center;
+  justify-content: space-between;
+  grid-template-columns: minmax(32px, 48px) minmax(140px, 1fr) repeat(
+      6,
+      minmax(30px, 48px)
+    );
+  background-color: var(--grey-color);
+}
+.titles p {
+  font-size: 11px;
+  color: var(--navItems-color);
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 6px 0;
+}
+.titles p:nth-child(2) {
+  justify-content: flex-start;
+  padding-left: 10px;
+}
+
+.card {
+  width: 11px;
+  height: 14px;
+  margin-left: 3px;
+  border-radius: 4px;
+}
+
+.cardYellow {
+  background-color: yellow;
+}
+
+.cardRed {
+  background-color: red;
+}
+
+.sectionTitle {
+  color: var(--black-color);
+}
+
+@media only screen and (max-width: 560px) {
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 12px;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .titles {
+    grid-template-columns: minmax(22px, 25px) minmax(100px, 140px) repeat(
+        6,
+        minmax(20px, 30px)
+      );
+  }
+  .playerStats {
+    padding-left: 4px;
+  }
+}

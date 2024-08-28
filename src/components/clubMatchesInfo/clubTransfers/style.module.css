@@ -1,0 +1,38 @@
+.transfers {
+  margin-top: 10px;
+}
+
+.titles {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 80px repeat(2, 1fr) 0.5fr;
+  background-color: var(--grey-color);
+  border-radius: 6px;
+  padding: 0 10px;
+}
+.titles p {
+  font-size: 11px;
+  color: var(--navItems-color);
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  padding: 4px 0;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.matchesTitle {
+  color: var(--title-color);
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+.mobileFee {
+  justify-content: flex-end !important;
+}
+
+@media only screen and (max-width: 925px) {
+  .titles {
+    grid-template-columns: repeat(2, 1fr) 0.5fr;
+  }
+}

@@ -1,0 +1,40 @@
+.formInfo {
+  margin-bottom: 8px;
+}
+.title {
+  background-color: var(--grey-color);
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.title p {
+  font-size: 12px;
+  color: var(--league-color);
+  font-weight: 600;
+}
+
+.matchInfoItem {
+  display: flex;
+}
+
+.matchInfoItem h4 {
+  margin-left: 10px;
+  color: var(--league-color);
+  font-size: 14px;
+  margin-right: 4px;
+}
+.matchInfoItem h3 {
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--title-color);
+}
+
+@media only screen and (max-width: 550px) {
+  .matchInfoItem {
+    flex-direction: column;
+    margin-bottom: 28px;
+  }
+  .matchInfoItem h3 {
+    padding-left: 28px;
+  }
+}

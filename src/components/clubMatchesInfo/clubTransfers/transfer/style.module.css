@@ -1,0 +1,91 @@
+.infoItem {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 80px repeat(2, 1fr) 0.5fr;
+  border-bottom: 1px solid var(--standings-border-color);
+  padding: 0 10px;
+  column-gap: 8px;
+  max-height: 58px;
+}
+
+.infoIndex {
+  border-radius: 5px;
+  color: var(--league-color);
+  font-size: 12px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.infoItem a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--black-color);
+}
+
+.infoNumber {
+  font-size: 11px;
+  color: var(--title-color);
+  display: flex;
+  column-gap: 8px;
+  padding: 8px 0;
+}
+.infoNumber img {
+  object-fit: contain;
+}
+.infoNumber svg {
+  color: #14dc4b;
+  height: 14px;
+  width: 14px;
+}
+
+.tournamentName {
+  font-size: 13px;
+  color: var(--league-color);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
+}
+.reason p {
+  padding: 0;
+}
+
+.reason {
+  align-items: flex-end;
+}
+
+@media only screen and (max-width: 965px) {
+  .infoItem {
+    grid-template-columns: repeat(2, 1fr) 0.5fr;
+  }
+
+  .infoNumber a {
+    font-size: 13px;
+  }
+  .mobileFromSection span {
+    font-size: 11px;
+  }
+
+  .infoNumber {
+    font-size: 13px;
+    column-gap: 6px;
+    padding: 6px 0;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  .infoItem {
+    grid-template-columns: 1fr 0.75fr 0.5fr;
+    padding: 0 4px;
+  }
+  .mobileFromSection {
+    column-gap: 0;
+  }
+  .reason {
+    font-size: 10px;
+  }
+  .infoNumber a {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,40 @@
+.prediction {
+  margin-bottom: 15px;
+}
+
+.hour {
+  font-size: 13px;
+  color: #819196;
+  font-weight: 600;
+}
+
+.predictionLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.predictionLink a:hover {
+  background-color: #0092c1;
+  border-color: #0092c1;
+}
+
+.predictionLink:hover a {
+  color: #fff;
+}
+
+.predictionLink a {
+  color: #797d7e;
+  padding: 4px 13px;
+  border: 1px solid var(--button-border-color);
+  border-radius: 5px;
+}
+
+.borderItem {
+  border: 1px solid var(--button-border-color);
+  border-radius: 10px;
+}
+
+.predictionTitleColor {
+  color: var(--navItems-color);
+}

@@ -1,0 +1,77 @@
+.settings {
+  border: 1px solid var(--event-menu-border);
+  border-radius: 10px;
+  padding: 24px;
+  font-size: 13px;
+  color: var(--userTeams-league-color);
+  margin-top: 15px;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 29px;
+}
+
+.contactTitle {
+  background-color: var(--grey-color);
+  width: 160px;
+  padding: 13px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 22px;
+  border-radius: 100px;
+}
+.contactTitle h4 {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--userTeams-league-color);
+}
+
+.burgerMenu {
+  border: 1px solid #0a5c76;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.socialItems a:hover div {
+  background-color: #aaa6a6;
+}
+
+.socialItems div {
+  background-color: #eeeeee;
+  border-radius: 100%;
+  width: 33px;
+  height: 33px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.socialItems span {
+  height: 15px;
+  display: block;
+  transition: all 0.3s;
+}
+
+.modalHeader,
+.modalContent {
+  background-color: var(--white-color) !important;
+}
+.modalHeader div {
+  color: var(--black-color) !important;
+}
+
+.darkBtn {
+  border: 1px solid #000;
+  border-radius: 100px;
+}
+
+@media only screen and (max-width: 965px) {
+  .burgerMenu {
+    padding: 8px;
+  }
+}

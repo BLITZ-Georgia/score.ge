@@ -1,0 +1,152 @@
+.match {
+  display: grid;
+  grid-template-columns: 0.75fr 70px 40px;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.matchContainer {
+  border-bottom: 1px solid var(--matches-border-color);
+  grid-template-columns: 18px 1fr;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s ease;
+}
+.matchContainer:hover {
+  background-color: #c8cdcd33;
+}
+
+.matchesItems p {
+  font-size: 13px;
+  color: var(--match-color);
+  font-weight: 500;
+}
+
+.match h4 {
+  color: var(--match-color);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.starIcon {
+  cursor: pointer;
+}
+
+.starIcon svg {
+  cursor: pointer;
+}
+.starIcon:hover path {
+  fill: #ffcd00;
+  stroke: #ffcd00;
+}
+.favorited {
+  transition: all 0.3s ease;
+}
+
+.favorited path {
+  fill: #ffcd00;
+  stroke: #ffcd00;
+}
+
+.matchInfoTitle {
+  display: grid;
+  grid-template-columns: 60px 36px 1fr;
+  align-items: center;
+  column-gap: 16px;
+}
+
+.scoreInfo p {
+  color: var(--match-score-color);
+}
+
+.dateTitle h4 {
+  color: var(--navItems-color);
+}
+
+.title {
+  align-items: center;
+  background-color: var(--grey-color);
+  border-radius: 4px;
+  color: var(--navItems-color);
+  display: flex;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 12px;
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+
+.moreBtn p {
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  padding-top: 1px;
+}
+
+.moreMatches {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 17px;
+  padding-bottom: 6px;
+}
+
+.moreMatches button {
+  color: var(--show-matches-color);
+  border-bottom: 1px solid var(--show-matches-color);
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.D {
+  background-color: #f3a000;
+}
+
+.W {
+  background-color: #00a83f;
+}
+
+.L {
+  background-color: #dc0000;
+}
+
+.winner {
+  font-weight: bolder !important;
+}
+
+.partificant {
+  overflow: hidden;
+  width: 160px;
+  height: 1.2em;
+  white-space: nowrap;
+}
+
+@media only screen and (max-width: 550px) {
+  .matchInfoTitle {
+    column-gap: 8px;
+  }
+  .matchesItems p {
+    white-space: nowrap;
+  }
+  .matchContainer {
+    overflow-x: auto;
+  }
+  .matchContainer::-webkit-scrollbar {
+    height: 2px;
+    background-color: #aaa;
+    border-radius: 15px;
+  }
+  .scoreInfo {
+    text-align: center;
+  }
+  .clubImg {
+    width: 16px;
+  }
+}

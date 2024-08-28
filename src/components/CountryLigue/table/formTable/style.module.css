@@ -1,0 +1,66 @@
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.menuITem {
+  width: 30px;
+  height: 28px;
+  border-radius: 7px;
+}
+
+.info ul {
+  background-color: var(--grey-color);
+  padding-bottom: 10px;
+  margin-bottom: 2px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+.info li button {
+  color: var(--navItems-color);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.activeMenu {
+  background-color: var(--white-color);
+  border-radius: 7px;
+  padding: 5px 10px;
+}
+
+.infoTableTitle {
+  background-color: var(--grey-color);
+  padding-bottom: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 6fr 1fr 1fr 1fr 1fr 2fr 1fr 1fr;
+}
+
+.infoTableTitle p {
+  font-size: 12px;
+  color: var(--table-text-color);
+}
+
+.infoText {
+  color: var(--navItems-color);
+  font-size: 12.5px;
+  margin-top: 13px;
+}
+
+@media only screen and (max-width: 965px) {
+  .infoTableTitle {
+    grid-template-columns: 6fr 1fr 1fr 1fr 1fr 2fr 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .infoTableTitle {
+    grid-template-columns: 5.5fr 1fr 1fr 1fr 1fr 2fr 1fr 1fr;
+    padding-left: 4px;
+  }
+
+  .infoTableTitle p {
+    font-size: 10px;
+  }
+}

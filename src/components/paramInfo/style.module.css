@@ -1,0 +1,28 @@
+.info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.info i {
+  margin-right: 10px;
+}
+
+.params {
+  color: var(--param-color);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.addedParams {
+  color: var(--param-color);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.paramArrow {
+  color: #cccccc;
+  font-size: 16px;
+  margin: 0 8px;
+  font-weight: 600;
+}

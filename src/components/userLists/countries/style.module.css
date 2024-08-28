@@ -1,0 +1,143 @@
+.countriesTitle {
+  border-bottom: 1px solid var(--matches-titles-color);
+  margin-bottom: 10px;
+}
+
+.countriesTitle h2 {
+  font-size: 12.5px;
+  padding-top: 4px;
+  letter-spacing: 0.5px;
+  color: var(--user-list-color);
+}
+
+.country span {
+  font-size: 12.5px;
+  color: var(--user-list-color);
+  font-weight: normal;
+}
+
+.arrowIcon {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  order: 2;
+  position: relative;
+}
+
+.country {
+  padding: 4px 9px 6px 8px;
+  transition: all 0.2s ease;
+}
+
+.country:hover {
+  display: flex;
+  background-color: var(--background--color);
+  border-radius: 6px;
+}
+
+.country:hover .arrowIcon {
+  display: flex;
+}
+
+.blockList {
+  display: none;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--matches-titles-color);
+}
+
+.blockOpened .arrowIcon svg {
+  transform: rotate(180deg);
+}
+.blockOpened .blockList {
+  display: flex !important;
+}
+
+.blockList a {
+  font-size: 12.5px;
+  padding: 4px 9px 6px 8px;
+  color: var(--navItems-color);
+}
+
+.blockOpened .country {
+  background-color: var(--background--color);
+  border-radius: 10px;
+}
+.blockOpened .arrowIcon {
+  display: block;
+}
+
+.pinIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  transition: all 0.2s ease-in;
+}
+
+.pinIcon::before {
+  background-color: transparent;
+  border-radius: 50%;
+  content: "";
+  height: 24px;
+  display: none;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  transition-duration: 0.18s;
+  transition-timing-function: ease-in-out;
+  width: 24px;
+}
+
+.pinIcon:hover::before {
+  background-color: #0092c1;
+  opacity: 0.15;
+  display: block;
+}
+
+.pinIcon:hover svg path {
+  fill: #0092c1;
+}
+
+.pinActive {
+  transition: all 0.2s ease-in;
+}
+.pinActive .blockLink a {
+  color: #0092c1;
+}
+.pinActive svg {
+  transform: rotate(-45deg);
+  transition: all 0.2s ease-in;
+}
+
+.pinActive svg path {
+  fill: #0092c1;
+}
+
+.blockLink {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.blockLink a:hover {
+  color: #0092c1;
+}
+
+.showMoreBtn {
+  display: flex;
+  align-items: center;
+  padding: 4px 9px 6px 8px;
+  cursor: pointer;
+}
+
+.showMoreBtn p {
+  font-size: 12.5px;
+  color: var(--user-list-color);
+  border-bottom: 1px solid var(--user-list-color);
+  font-weight: 600;
+  margin-right: 8px;
+}

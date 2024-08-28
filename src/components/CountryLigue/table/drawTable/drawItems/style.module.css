@@ -1,0 +1,104 @@
+.draw {
+  margin-left: 6px;
+  position: relative;
+}
+/* 
+.draw:hover {
+  opacity: 80%;
+} */
+
+.drawLink:hover {
+  opacity: 80%;
+}
+
+.drawPlayers {
+  background-color: var(--white-color);
+  border: 1px solid var(--event-matches-border);
+  border-radius: 8px;
+  color: var(--black-color);
+  cursor: pointer;
+  display: grid;
+  grid-template:
+    " homeParticipant homeResult " 16px
+    " awayParticipant awayResult " 16px / minmax(72px, max-content) minmax(max-content, 1fr);
+  padding: 12px 8px;
+  row-gap: 4px;
+}
+.homePlayer {
+  grid-area: homeParticipant;
+  font-size: 13px;
+  line-height: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.homeScore {
+  grid-area: homeResult;
+  align-items: center;
+  display: flex;
+  font-weight: 700;
+  justify-content: flex-end;
+  justify-items: flex-end;
+  font-size: 12px;
+  column-gap: 8px;
+}
+
+.awayPlayer {
+  grid-area: awayParticipant;
+  font-size: 13px;
+  line-height: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.awayScore {
+  grid-area: awayResult;
+  align-items: center;
+  display: flex;
+  font-weight: 700;
+  justify-content: flex-end;
+  justify-items: flex-end;
+  font-size: 12px;
+  column-gap: 8px;
+}
+
+.drawPlayers span {
+  font-size: 11px;
+}
+
+.eventsDropDown {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: -8px;
+  padding-bottom: 10px;
+  position: absolute;
+  top: calc(50% + 31px);
+  width: 100%;
+  padding: 0;
+  display: flex;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.dropDownList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.dropDownItem {
+  width: 100%;
+}
+.dropDownItem span,
+.dropDownItem a {
+  font-size: 11px;
+  line-height: 16px;
+}
+.dropDownItem a:hover {
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 460px) {
+}

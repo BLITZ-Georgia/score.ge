@@ -1,0 +1,103 @@
+.support {
+  border-radius: 50px;
+  border: 1px solid var(--matches-border-color);
+  padding: 4px;
+  margin-top: 27px;
+}
+
+.logoImgContainer {
+  border-radius: 100px;
+  background: #11adb1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 65px;
+  transition: all 0.5s;
+}
+
+.logoImgContainer img {
+  transition: all 0.5s;
+}
+.logoImgContainer a:hover img {
+  transform: scale(1.07);
+  opacity: 100%;
+}
+
+.support a:hover img {
+  opacity: 80%;
+}
+
+.supportLinks {
+  margin: 0 30px;
+}
+
+.arrow {
+  transform: rotate(180deg);
+}
+
+.transformArrow {
+  transform: rotate(0deg);
+}
+
+.support {
+  transition: all 0.3s ease-in;
+}
+
+@media only screen and (max-width: 965px) {
+  .support {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    row-gap: 21px;
+    padding: 15px 30px;
+    border: 1px solid var(--button-border-color);
+    border-radius: 10px;
+    max-height: 70px;
+    overflow: hidden;
+    transition: all 0.3s ease-in;
+  }
+
+  .support div:first-child {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  .logoImgContainer {
+    background: transparent;
+    justify-content: space-between;
+    height: auto;
+    width: 100%;
+  }
+  .showAllItems {
+    max-height: max-content;
+  }
+
+  .blitzLogoMobile {
+    width: 100px;
+    height: 40px;
+    padding: 3px;
+  }
+
+  .supportLinks {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .support .supportLinks:nth-of-type(2) img,
+  .support .supportLinks:nth-of-type(1) img {
+    width: 70px;
+    height: 30px;
+    object-fit: contain;
+  }
+
+  .support .supportLinks:nth-of-type(3) img {
+    width: 85px;
+    height: 30px;
+    object-fit: contain;
+  }
+  .support .supportLinks:nth-of-type(4) img {
+    width: 150px;
+    height: 30px;
+    object-fit: contain;
+  }
+}
