@@ -26,6 +26,7 @@ const Contact = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<Inputs>();
 
@@ -33,6 +34,7 @@ const Contact = () => {
     (data: Inputs) => axios.post(`/api/contact`, { ...data }),
     {
       onSuccess: (data: any) => {
+        reset();
         return data;
       },
       onError: (error: any) => {
@@ -42,11 +44,11 @@ const Contact = () => {
     }
   );
 
+  const { error, data, isLoading, isError, isSuccess } = sendMessageMutation;
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     sendMessageMutation.mutate(data);
   };
-
-  const { error, data, isLoading, isError, isSuccess } = sendMessageMutation;
 
   return (
     <section className={`${style.contact}  bg-white p-5`}>
