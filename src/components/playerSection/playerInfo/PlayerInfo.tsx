@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { Skeleton } from "antd";
+import { getDate } from "@/utils/getDate";
 
 const PlayerInfo = () => {
   const searchParams = useSearchParams();
@@ -70,18 +71,9 @@ const PlayerInfo = () => {
 
     return ` ${age} (${formattedBirthDate})`;
   }
-  function contractDateHandler(timestamp: number): string {
-    const date = new Date(timestamp * 1000);
-
-    const day = date.getDate().toString().padStart(2, "0");
-    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are 0-indexed
-    const year = date.getFullYear();
-
-    return `${day}.${month}.${year}`;
-  }
 
   const age = getAgeAndFormattedDate(data?.DATA.BIRTHDAY_TIME);
-  const contractDate = contractDateHandler(data?.DATA.PCE);
+  const contractDate = getDate(data?.DATA.PCE);
 
   return (
     <section

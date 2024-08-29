@@ -11,13 +11,16 @@ const supportImages = [
     width: 90,
     height: 22,
     displayStyle: "var(--showLight-element)",
+    href: "https://www.score.ge/",
   },
+
   {
-    src: "/images/footer/sp1.svg",
-    alt: "support-2",
-    width: 90,
+    src: "/images/footer/sp2.svg",
+    alt: "support-1",
+    width: 80,
     height: 22,
     displayStyle: "var(--showDark-element)",
+    href: "https://www.score.ge/",
   },
 
   {
@@ -26,20 +29,25 @@ const supportImages = [
     width: 80,
     height: 22,
     displayStyle: "var(--showLight-element)",
+    href: "https://inews.ge/",
   },
+
   {
-    src: "/images/footer/sp2.svg",
-    alt: "support-1",
-    width: 80,
+    src: "/images/footer/sp1.svg",
+    alt: "support-2",
+    width: 90,
     height: 22,
     displayStyle: "var(--showDark-element)",
+    href: "https://inews.ge/",
   },
+
   {
     src: "/images/footer/support3.svg",
     alt: "support-3",
     width: 90,
     height: 22,
     displayStyle: "var(--showLight-element)",
+    href: "https://isport.ge/",
   },
   {
     src: "/images/footer/sp3.svg",
@@ -47,6 +55,7 @@ const supportImages = [
     width: 90,
     height: 22,
     displayStyle: "var(--showDark-element)",
+    href: "https://isport.ge/",
   },
   {
     src: "/images/footer/support4.svg",
@@ -54,6 +63,7 @@ const supportImages = [
     width: 145,
     height: 13,
     displayStyle: "var(--showLight-element)",
+    href: "https://footballnews.ge/",
   },
   {
     src: "/images/footer/sp4.svg",
@@ -61,6 +71,7 @@ const supportImages = [
     width: 145,
     height: 13,
     displayStyle: "var(--showDark-element)",
+    href: "https://footballnews.ge/",
   },
 ];
 
@@ -73,7 +84,7 @@ const Support = () => {
       }`}
     >
       <div className={`${style.logoImgContainer} `}>
-        <Link href={"#"}>
+        <div>
           <Image
             src={"/images/footer/blitz.svg"}
             alt={"logo"}
@@ -90,7 +101,7 @@ const Support = () => {
             key={"blitzIconMobile"}
             className={`${style.blitzLogoMobile} desktopNo`}
           />
-        </Link>
+        </div>
         <svg
           width="9"
           height="6"
@@ -113,10 +124,11 @@ const Support = () => {
 
       {supportImages.map((el, id) => (
         <Link
-          href={"#"}
+          href={el.href}
           key={id}
           className={style.supportLinks}
           style={{ display: el.displayStyle }}
+          target="_blank"
         >
           <Image
             src={el.src}

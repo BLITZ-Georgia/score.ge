@@ -94,7 +94,7 @@ const Socials = ({ isNavFixed }: { isNavFixed: boolean }) => {
                 <div className={`${style.itemOne} flex`}>
                   <div className={`flex justify-center items-center  `}>
                     <Link
-                      href="#"
+                      href="/"
                       target="_blank"
                       className="w-full h-full flex justify-center items-center relative "
                     >
@@ -116,7 +116,7 @@ const Socials = ({ isNavFixed }: { isNavFixed: boolean }) => {
                   </div>
                   <div className="flex justify-center items-center ">
                     <Link
-                      href="#"
+                      href="https://footballnews.ge/"
                       target="_blank"
                       className="w-full h-full flex justify-center items-center"
                     >
@@ -142,7 +142,7 @@ const Socials = ({ isNavFixed }: { isNavFixed: boolean }) => {
                 >
                   <div className="flex justify-center items-center ">
                     <Link
-                      href="#"
+                      href="https://isport.ge/"
                       target="_blank"
                       className="w-full h-full flex justify-center items-center"
                     >
@@ -164,7 +164,7 @@ const Socials = ({ isNavFixed }: { isNavFixed: boolean }) => {
                   </div>
                   <div className={`flex justify-center items-center  `}>
                     <Link
-                      href="#"
+                      href="https://inews.ge/"
                       target="_blank"
                       className="w-full h-full flex justify-center items-center relative"
                     >
