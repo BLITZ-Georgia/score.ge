@@ -20,7 +20,7 @@ const CountryLeague = () => {
 
       {activeMenu === "SUMMARY" && (
         <div>
-          <Todaymatches setActiveMenu={setActiveMenu} activeMenu={activeMenu} />
+          <Todaymatches />
 
           <LatestScores
             setActiveMenu={setActiveMenu}

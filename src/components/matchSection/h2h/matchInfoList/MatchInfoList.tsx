@@ -38,6 +38,8 @@ const MatchInfoList = ({ filteredData }: { filteredData: any }) => {
                   ? "D"
                   : match.H_RESULT === "LOST"
                   ? "L"
+                  : match.H_RESULT === "WIN_OVERTIME"
+                  ? "w"
                   : null;
 
               const whoWin =
@@ -137,7 +139,9 @@ const MatchInfoList = ({ filteredData }: { filteredData: any }) => {
                         <div
                           className={`flex ${style.moreBtn} px-2 py-1 items-center justify-center`}
                         >
-                          <p className={`${style[result]}`}>{result}</p>
+                          <p className={`${style[result]}`}>
+                            {result.toUpperCase()}
+                          </p>
                         </div>
                       )}
                     </section>

@@ -117,6 +117,15 @@
   background-color: #dc0000;
 }
 
+.w {
+  background: rgb(243, 160, 0);
+  background: linear-gradient(
+    315deg,
+    rgba(243, 160, 0, 1) 25%,
+    rgba(0, 148, 55, 1) 25%
+  );
+}
+
 .winner {
   font-weight: bolder !important;
 }

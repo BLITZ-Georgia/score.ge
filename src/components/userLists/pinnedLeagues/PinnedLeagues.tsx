@@ -45,10 +45,6 @@ const PinnedLeagues = () => {
       }
     });
 
-  const filtered = allTournament?.DATA?.filter(
-    (league: any) => league.COUNTRY_NAME === "USA"
-  );
-
   return (
     <section className={`mb-7 `}>
       <article className=" p-4">

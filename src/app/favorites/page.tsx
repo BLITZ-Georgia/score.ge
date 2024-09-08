@@ -8,10 +8,6 @@ export default async function Favorites() {
     ssr: false,
   });
 
-  const res = await getPrediction();
-
-  const parsedData = res.props.rssData.rss.channel.item;
-
   return (
     <main className=" flex  py-4 pb-0 container gap-x-4 mobailmain">
       <div className="mobileNone">
@@ -19,7 +15,7 @@ export default async function Favorites() {
       </div>
       <NoSSR />
       <div className="mobileNone">
-        <Predictions data={parsedData} />
+        <Predictions />
       </div>
     </main>
   );

@@ -1,6 +1,6 @@
 .match {
   display: grid;
-  grid-template-columns: 3fr 1fr 75px;
+  grid-template-columns: 3fr 1fr 120px;
   width: 100%;
 }
 

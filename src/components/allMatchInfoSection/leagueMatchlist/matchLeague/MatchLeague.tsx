@@ -165,8 +165,8 @@ const MatchLeague: React.FC<leagueProps> = ({
           className={`${showMatches ? style.showMatcher : "hidden"} mb-5`}
         >
           {events?.map((match, index) => {
-            const [awayId] = match.AWAY_PARTICIPANT_IDS;
-            const [homeId] = match.HOME_PARTICIPANT_IDS;
+            const [awayId] = match?.AWAY_PARTICIPANT_IDS;
+            const [homeId] = match?.HOME_PARTICIPANT_IDS;
 
             let matchResult = "";
             if (match.WINNER === 0) {

@@ -7,15 +7,8 @@ import { useSearchParams } from "next/navigation";
 import { Skeleton } from "antd";
 import { useSportIdHandler } from "@/components/hooks/useSportIdHandler";
 import useGMTOffset from "@/components/hooks/useTimeZone";
-import CountryLeagueEvents from "../../countryLeagueEvents/CountryLeagueEvents";
 
-const Todaymatches = ({
-  setActiveMenu,
-  activeMenu,
-}: {
-  setActiveMenu?: any;
-  activeMenu: string;
-}) => {
+const Todaymatches = () => {
   const sportIdCheck = useSportIdHandler();
   const searchParams = useSearchParams();
   const { gmtOffset } = useGMTOffset();

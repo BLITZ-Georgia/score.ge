@@ -36,7 +36,7 @@ const Navigation = () => {
         }`}
       >
         <Link
-          href={"https://prediction.score.ge"}
+          href={"https://predictions.score.ge"}
           className="flex gap-x-2 items-center"
         >
           <PredictionIcon />

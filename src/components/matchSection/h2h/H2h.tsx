@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import style from "./style.module.css";
 import H2hNavigation from "./h2h2Navigation/H2hNavigation";
-import MatchLeague from "@/components/allMatchInfoSection/leagueMatchlist/matchLeague/MatchLeague";
 import MatchInfoList from "./matchInfoList/MatchInfoList";
 
 const H2h = ({

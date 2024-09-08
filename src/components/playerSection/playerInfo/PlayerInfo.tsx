@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { Skeleton } from "antd";
-import { getDate } from "@/utils/getDate";
+import { getDatesItem } from "@/utils/getDate";
 
 const PlayerInfo = () => {
   const searchParams = useSearchParams();
@@ -73,7 +73,7 @@ const PlayerInfo = () => {
   }
 
   const age = getAgeAndFormattedDate(data?.DATA.BIRTHDAY_TIME);
-  const contractDate = getDate(data?.DATA.PCE);
+  const { formatted } = getDatesItem(data?.DATA.PCE);
 
   return (
     <section
@@ -105,7 +105,7 @@ const PlayerInfo = () => {
               Market value:<span>{data?.DATA.PMV}</span>
             </p>
             <p>
-              Contract expires:<span>{data?.DATA.PCE ? contractDate : ""}</span>
+              Contract expires:<span>{data?.DATA.PCE ? formatted : ""}</span>
             </p>
           </div>
         </div>

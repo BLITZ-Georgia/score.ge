@@ -220,7 +220,7 @@ const Match: React.FC<matchProps> = ({
                   )}
                 </div>
               )}
-              <div className="flex items-center gap-x-2 mobileNone">
+              <div className="flex items-center gap-x-2 mobileNone w-full justify-end">
                 <div
                   className={`flex ${style.moreBtn} px-2 py-1 items-center justify-center mobileNone`}
                 >

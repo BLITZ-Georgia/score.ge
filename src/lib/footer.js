@@ -1,64 +1,71 @@
 export const livescoreMenu = [
   {
     title: "Football",
-    href: "https://score.ge/",
+    href: "/",
   },
 
   {
     title: "Tennis",
-    href: "https://score.ge/tennis",
+    href: "/tennis",
   },
   {
     title: "Basketball",
-    href: "https://score.ge/basketball",
+    href: "/basketball",
   },
   {
     title: "Hockey",
-    href: "https://score.ge/hockey",
+    href: "/hockey",
   },
   {
     title: "Favorites",
-    href: "https://score.ge/favorites",
+    href: "/favorites",
   },
 ];
 
 export const footballInernational = [
   {
     title: "Champions League",
-    href: "https://score.ge/",
+    href:
+      "/football/Europe/Champions%20League?seasonStageId=pfpL1ZhB&name=Champions%20League&tournamentId=x0KXIZfD",
   },
 
   {
     title: "Europa League",
-    href: "https://score.ge/tennis",
+    href:
+      "/football/Europe/Europa%20League?seasonStageId=xhPafioo&name=Europa%20League&tournamentId=fLWNsJXD",
   },
   {
     title: "Conference League",
-    href: "https://score.ge/basketball",
+    href:
+      "/football/Europe/Conference%20League?seasonStageId=f7ClFY74&name=Conference%20League&tournamentId=8OzStwmK",
   },
   {
-    title: "World Cup 2026",
-    href: "https://score.ge/hockey",
+    title: "World Cup",
+    href:
+      "/football/World/World%20Championship?seasonStageId=GUncR9aR&name=World%20Championship&tournamentId=zeSHfCx3",
   },
-  {
-    title: "Europ 2028",
-    href: "https://score.ge/favorites",
-  },
+  // {
+  //   title: "Europe 2028",
+  //   href: "https://score.ge/favorites",
+  // },
 ];
 
 export const footballLeagues = [
   {
     title: "Premier League",
-    href: "https://score.ge/",
+    href:
+      "/football/England/Premier%20League?seasonStageId=lAkHuyP3&name=Premier%20League&tournamentId=xjLzNo5G",
   },
 
   {
     title: "Liga 1",
-    href: "https://score.ge/tennis",
+    href:
+      "/football/France/Ligue%201?seasonStageId=WYO1P5ch&name=Ligue%201&tournamentId=hYZkYQNG",
   },
   {
     title: "Bundesliga",
-    href: "https://score.ge/basketball",
+    href:
+      "/football/Germany/Bundesliga?seasonStageId=8l1ZdrsC&name=Bundesliga&tournamentId=6PcHXsLl",
   },
 ];
 

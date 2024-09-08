@@ -1,20 +1,27 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./style.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { checkPage } from "@/components/helper/checkMainPage";
 import { GrAnalytics } from "react-icons/gr";
+import { getPrediction } from "@/utils/getPredictions";
 
-const Predictions = ({ data }: { data?: any }) => {
+const Predictions = () => {
   const path = usePathname();
-
+  const [parsedData, setParsedData] = useState<[]>([]);
   const isMainPage = checkPage(path);
 
-  // console.log(data);
+  useEffect(() => {
+    const fetchPredictionData = async () => {
+      const res = await getPrediction();
+      setParsedData(res.props.rssData.rss.channel.item);
+    };
 
-  const arr = [1, 2, 3];
+    fetchPredictionData();
+  }, []);
+
   return (
     <section
       className={`${style.prediction}  w-full    ${
@@ -35,20 +42,38 @@ const Predictions = ({ data }: { data?: any }) => {
           </h3>
         </div>
         <div className={`p-4 ${style.predictionList}`}>
-          {arr.map((el, id) => (
-            <div className="mb-3 " key={id}>
-              <Image
-                src="/images/prediction.jfif"
-                alt="prediction"
-                width={220}
-                height={200}
-              />
-            </div>
-          ))}
+          {parsedData &&
+            parsedData
+              ?.filter((item: any) => item.category.includes("მიმდინარე"))
+              .map((prediction: any, id: number) => {
+                const predictionLinkUrl = prediction?.link;
+                const img = prediction?.description.match(
+                  /https?:\/\/[^"]+\.(jpg|jpeg|png|gif)/i
+                );
+                const title = prediction?.title;
+
+                return (
+                  <Link
+                    href={predictionLinkUrl}
+                    className="mb-3 block"
+                    title={title}
+                    key={id}
+                  >
+                    <Image
+                      src={img !== null ? img[0] : "/images/prediction.jfif"}
+                      alt="prediction"
+                      width={220}
+                      height={200}
+                    />
+                  </Link>
+                );
+              })}
         </div>
 
         <div className={`${style.seeAlLink} mobileNone`}>
-          <Link href="#">See All </Link>
+          <Link href="https://predictions.score.ge/" target="_blank">
+            See All{" "}
+          </Link>
         </div>
       </article>
       <article className={style.adImgSection}>

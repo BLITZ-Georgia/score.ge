@@ -14,7 +14,7 @@ import { ThemeProvider } from "@/components/store/ThemeContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "FlashScore",
+  title: "Score.ge",
   description: "Scores for different sports",
 };
 

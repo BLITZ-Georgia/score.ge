@@ -2,7 +2,8 @@ import axios from "axios";
 import xml2js from "xml2js";
 
 export const getPrediction = async () => {
-  const url = "https://api.allorigins.win/get?url=https://juve.ge/rss/rss.xml";
+  const url =
+    "https://api.allorigins.win/get?url=http://predictions.score.ge/rss.xml";
 
   try {
     // Fetch the XML data through the CORS proxy
