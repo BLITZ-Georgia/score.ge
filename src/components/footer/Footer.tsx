@@ -13,7 +13,7 @@ import {
   analyticsMenu,
 } from "@/lib/footer";
 
-const Footer = () => {
+const Footer = ({ children }: { children: React.ReactNode }) => {
   const pathName = usePathname();
   const matchRouteHandler = pathName.includes("match");
 
@@ -34,7 +34,7 @@ const Footer = () => {
         <FooterMenu title={"ANALYTICS"} menuItems={analyticsMenu} />
       </div>
       <Support />
-      <Copyright />
+      <Copyright>{children}</Copyright>
     </section>
   );
 };

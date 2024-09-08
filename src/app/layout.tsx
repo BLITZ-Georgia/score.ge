@@ -10,6 +10,7 @@ import { ReduxToolkitProvider } from "@/components/helper/reduxProvider";
 import MainNav from "@/components/header/navigation/Navigation";
 import Predictions from "@/components/predictions/Predictions";
 import { ThemeProvider } from "@/components/store/ThemeContext";
+import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <script async src="//counter.top.ge/counter.js"></script>
+      <GoogleTagManager gtmId="G-PPSM2KJ8JY" />
+      <GoogleAnalytics gaId="G-PPSM2KJ8JY" />
       <ThemeProvider>
         <body className={inter.className}>
           <ReduxToolkitProvider>
@@ -44,7 +48,11 @@ export default function RootLayout({
             </QueryClientProviderHelper>
           </ReduxToolkitProvider>
           <footer className="w-full  mt-5">
-            <Footer />
+            <Footer>
+              <div>
+                <div id="top-ge-counter-container" data-site-id="117564"></div>
+              </div>
+            </Footer>
           </footer>
         </body>
       </ThemeProvider>

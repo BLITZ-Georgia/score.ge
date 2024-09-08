@@ -1,13 +1,14 @@
 "use client";
 import React from "react";
 import style from "./style.module.css";
-import { Fb, Email, Inst, X, Phone, EmailIcon } from "@/common/svg/contact";
+import { Fb, Inst, X, Phone, EmailIcon } from "@/common/svg/contact";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useMutation } from "react-query";
 import axios from "axios";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
+import { FaViber } from "react-icons/fa";
 
 type Inputs = {
   username: string;
@@ -17,10 +18,14 @@ type Inputs = {
 
 const Contact = () => {
   const socLinks = [
-    { href: "#", icon: <Fb /> },
-    { href: "#", icon: <X /> },
-    { href: "#", icon: <Inst /> },
-    { href: "#", icon: <Email /> },
+    { href: "https://www.facebook.com/ScorePredicts", icon: <Fb /> },
+    { href: "https://x.com/score_ge", icon: <X /> },
+    { href: "https://www.instagram.com/score.ge_/", icon: <Inst /> },
+    {
+      href:
+        "https://invite.viber.com/?g2=AQAIJfiGfhP%2B2FNndDYEDbFffHEBtkz2De4eshG0GKiW%2B%2FcbNzQzoSmQ33LknW6%2F&lang=en",
+      icon: <FaViber fill="#fff" fontSize={14} />,
+    },
   ];
 
   const {
@@ -57,13 +62,23 @@ const Contact = () => {
           <div className="flex items-center justify-center mb-7 flex-col">
             <h2 className="font-semibold text-3xl mb-5 ">Contact Us</h2>
             <p className={style.paragraph}>
-              do you have questions We are ready to share our experience with
+              Do you have questions? We are ready to share our experience with
               you. Write to us, follow us.
             </p>
           </div>
           <div className="flex gap-x-3 mb-7">
             {socLinks.map((el, id) => (
-              <Link href={el.href} target="_blank" key={id}>
+              <Link
+                href={el.href}
+                target="_blank"
+                key={id}
+                className="flex justify-center items-center"
+                style={{
+                  width: "33px",
+                  backgroundColor: "#034960",
+                  borderRadius: "15px",
+                }}
+              >
                 {el.icon}
               </Link>
             ))}
@@ -71,11 +86,15 @@ const Contact = () => {
           <article className={`flex gap-x-7 ${style.contactInfo}`}>
             <div className="flex gap-x-3  items-center">
               <Phone />
-              <p className="font-semibold text-xs">+995 595 00 00 00 </p>
+              <a href="tel:+995595537393" className="font-semibold text-xs">
+                +995 595 53 73 93
+              </a>
             </div>
             <div className="flex  gap-x-3  items-center">
               <EmailIcon />
-              <p className="font-semibold text-xs">Info@Score.ge</p>
+              <a href="mailto:info@blitz.ge" className="font-semibold text-xs">
+                info@blitz.ge
+              </a>
             </div>
           </article>
         </div>

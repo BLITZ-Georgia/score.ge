@@ -121,6 +121,9 @@
 .submitBtn:hover {
   opacity: 0.8;
 }
+.contactInfo a:hover {
+  opacity: 0.8;
+}
 
 .error {
   color: red;

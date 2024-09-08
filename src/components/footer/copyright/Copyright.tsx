@@ -1,12 +1,13 @@
 import React from "react";
 import style from "./style.module.css";
 
-const Copyright = () => {
+const Copyright = ({ children }: { children: React.ReactNode }) => {
   return (
     <section className={`${style.copyright}  `}>
       <article className="container flex justify-between items-center">
         <h4>Copyright @ 2024</h4>
         <div>
+          {children}
           <svg
             width="32"
             height="32"
