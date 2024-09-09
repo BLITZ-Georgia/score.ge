@@ -76,7 +76,7 @@ const LatestScores = ({
   if (isFetching && allDataInfo.length === 0) {
     return (
       <div className="p-5 ">
-        <Skeleton />
+        <Skeleton active />
       </div>
     );
   }
@@ -117,7 +117,7 @@ const LatestScores = ({
 
       {isLoading && allDataInfo.length !== 0 ? (
         <div className="p-5 ">
-          <Skeleton />
+          <Skeleton active />
         </div>
       ) : (
         ""

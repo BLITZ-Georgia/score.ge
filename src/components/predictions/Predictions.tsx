@@ -7,16 +7,19 @@ import { usePathname } from "next/navigation";
 import { checkPage } from "@/components/helper/checkMainPage";
 import { GrAnalytics } from "react-icons/gr";
 import { getPrediction } from "@/utils/getPredictions";
+import { Skeleton } from "antd";
 
 const Predictions = () => {
   const path = usePathname();
   const [parsedData, setParsedData] = useState<[]>([]);
   const isMainPage = checkPage(path);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchPredictionData = async () => {
       const res = await getPrediction();
       setParsedData(res.props.rssData.rss.channel.item);
+      setIsLoading(false);
     };
 
     fetchPredictionData();
@@ -42,6 +45,11 @@ const Predictions = () => {
           </h3>
         </div>
         <div className={`p-4 ${style.predictionList}`}>
+          {isLoading && (
+            <div className="p-5 ">
+              <Skeleton active />
+            </div>
+          )}
           {parsedData &&
             parsedData
               ?.filter((item: any) => item.category.includes("მიმდინარე"))

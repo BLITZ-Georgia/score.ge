@@ -77,7 +77,7 @@ const ScheduledMatches = ({
   if (isFetching && allDataInfo.length === 0) {
     return (
       <div className="p-5 ">
-        <Skeleton />
+        <Skeleton active />
       </div>
     );
   }
@@ -118,7 +118,7 @@ const ScheduledMatches = ({
 
       {isLoading && allDataInfo.length !== 0 ? (
         <div className="p-5 ">
-          <Skeleton />
+          <Skeleton active />
         </div>
       ) : (
         ""

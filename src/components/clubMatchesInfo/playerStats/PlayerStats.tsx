@@ -162,7 +162,7 @@ const PlayerStats = ({ countryName }: { countryName: string }) => {
   if (isLoading) {
     return (
       <div className="p-4">
-        <Skeleton />
+        <Skeleton active />
       </div>
     );
   }

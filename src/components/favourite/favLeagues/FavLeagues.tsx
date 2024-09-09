@@ -225,7 +225,7 @@ const FavLeague: React.FC<leagueProps> = ({
           ) : (
             <div>
               {loading ? (
-                <Skeleton />
+                <Skeleton active />
               ) : (
                 <p style={{ color: "var(--black-color)" }}>No Data</p>
               )}

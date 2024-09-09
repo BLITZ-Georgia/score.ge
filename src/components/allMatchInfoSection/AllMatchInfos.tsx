@@ -64,7 +64,7 @@ const AllMatchInfos = () => {
         />
         {isLoading ? (
           <div className="p-5 ">
-            <Skeleton />
+            <Skeleton active />
           </div>
         ) : (
           <MatchLists selectedMatchNav={selectedMatchNav} data={data} />

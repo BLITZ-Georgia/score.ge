@@ -161,7 +161,7 @@ const Search = () => {
 
         {isLoading && (
           <div className="p-4">
-            <Skeleton />
+            <Skeleton active />
           </div>
         )}
 

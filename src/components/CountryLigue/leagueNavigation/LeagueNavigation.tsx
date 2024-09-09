@@ -48,7 +48,7 @@ const LeagueNavigation = ({
   if (isLoading) {
     return (
       <div className="p-5 ">
-        <Skeleton />
+        <Skeleton active />
       </div>
     );
   }

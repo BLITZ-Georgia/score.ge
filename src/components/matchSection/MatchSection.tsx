@@ -94,7 +94,7 @@ const MatchSection: React.FC = () => {
   if (isLoading || h2hData.isLoading) {
     return (
       <div className="p-4">
-        <Skeleton />
+        <Skeleton active />
       </div>
     );
   }

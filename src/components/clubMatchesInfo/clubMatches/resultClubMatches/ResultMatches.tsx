@@ -82,7 +82,7 @@ const ResultMatches = ({ pages }: { pages: number }) => {
   if (isLoading) {
     return (
       <div className="p-4">
-        <Skeleton />
+        <Skeleton active />
       </div>
     );
   }

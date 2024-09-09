@@ -6,7 +6,7 @@ const Copyright = ({ children }: { children: React.ReactNode }) => {
     <section className={`${style.copyright}  `}>
       <article className="container flex justify-between items-center">
         <h4>Copyright @ 2024</h4>
-        <div>
+        <div className="flex items-center gap-x-2">
           {children}
           <svg
             width="32"

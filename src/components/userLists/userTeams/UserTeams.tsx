@@ -146,7 +146,7 @@ const UserTeams = () => {
 
         {isLoading ? (
           <div className="p-3">
-            <Skeleton />
+            <Skeleton active />
           </div>
         ) : (
           <article>
