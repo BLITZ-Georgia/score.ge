@@ -20,8 +20,8 @@ export default function NotFound() {
         style={{ color: "var(--contact-color)" }}
         className="mb-7  max-w-80 text-center text-sm"
       >
-        <strong>Error:</strong> The requested page can't be displayed. Please
-        try again later.
+        <strong>Error:</strong> The requested page can&apos;t be displayed.
+        Please try again later.
       </p>
       <Link href="/" className="notFound-btn">
         Score.ge
