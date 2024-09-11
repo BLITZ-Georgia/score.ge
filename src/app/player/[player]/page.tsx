@@ -1,6 +1,7 @@
 import PlayerSection from "@/components/playerSection/PlayerSection";
 import Predictions from "@/components/predictions/Predictions";
 import UserLists from "@/components/userLists/UserLists";
+import { notFound } from "next/navigation";
 
 export default function player() {
   return (

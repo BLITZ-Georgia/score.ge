@@ -1,13 +1,21 @@
-import UserLists from "@/components/userLists/UserLists";
-import AllMatchInfos from "@/components/allMatchInfoSection/AllMatchInfos";
-import Predictions from "@/components/predictions/Predictions";
+import type { Metadata } from "next";
 import Header from "@/components/header/Header";
 import Advertisement from "@/components/advertisement/Advertisement";
 import Navigation from "@/components/navigation/Navigation";
 import Footer from "@/components/footer/Footer";
 import MainNav from "@/components/header/navigation/Navigation";
+import Predictions from "@/components/predictions/Predictions";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: "score.ge",
+  description: "Scores for different sports",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <>
       <header>
@@ -21,15 +29,8 @@ export default function Home() {
         </div>
         <Navigation />
       </header>
-      <main className={`flex  py-4 pb-0 container gap-x-4 mobailmain`}>
-        <div className="mobileNone">
-          <UserLists />
-        </div>
-        <AllMatchInfos />
-        <div className="mobileNone">
-          <Predictions />
-        </div>
-      </main>
+      {children}
+
       <footer className="w-full  mt-5">
         <Footer>
           <div>

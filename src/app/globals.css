@@ -165,6 +165,23 @@ img {
 .swiper {
   padding-right: 30px !important;
 }
+.notFound-btn {
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.4px;
+  text-align: center;
+  color: #fff;
+  padding: 12px 35px 12px 36px;
+  border-radius: 8px;
+  background-color: #0f2d37;
+  align-self: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.notFound-btn:hover {
+  background-color: #555e61;
+}
 
 @media only screen and (max-width: 965px) {
   .desktopNo {

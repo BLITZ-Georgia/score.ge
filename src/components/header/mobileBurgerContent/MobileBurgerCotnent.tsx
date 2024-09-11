@@ -54,13 +54,6 @@ const MobileBurgerCotnent = () => {
       >
         <section className="bg-white">
           <div className={`${style.settings}`}>
-            {/* <div className="flex justify-between mb-7">
-              <div className="flex gap-x-4">
-                <SettingIcon />
-                <p>Settings</p>
-              </div>
-              <ArrrowIcon />
-            </div> */}
             <div className="flex justify-between items-center">
               <div className="flex gap-x-4">
                 <p>Dark mode</p>

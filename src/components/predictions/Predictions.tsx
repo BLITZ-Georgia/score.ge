@@ -51,31 +51,31 @@ const Predictions = () => {
             </div>
           )}
           {parsedData &&
-            parsedData
-              ?.filter((item: any) => item.category.includes("მიმდინარე"))
-              .map((prediction: any, id: number) => {
-                const predictionLinkUrl = prediction?.link;
-                const img = prediction?.description.match(
-                  /https?:\/\/[^"]+\.(jpg|jpeg|png|gif)/i
-                );
-                const title = prediction?.title;
+            parsedData?.slice(0, 4).map((prediction: any, id: number) => {
+              const predictionLinkUrl = prediction?.link;
+              const img = prediction?.description.match(
+                /https?:\/\/[^"]+\.(jpg|jpeg|png|gif)/i
+              );
+              const title = prediction?.title;
 
-                return (
-                  <Link
-                    href={predictionLinkUrl}
-                    className="mb-3 block"
-                    title={title}
-                    key={id}
-                  >
+              return (
+                <Link
+                  href={predictionLinkUrl}
+                  className="mb-3 block"
+                  title={title}
+                  key={id}
+                >
+                  {img !== null && (
                     <Image
-                      src={img !== null ? img[0] : "/images/prediction.jfif"}
+                      src={img[0]}
                       alt="prediction"
                       width={220}
                       height={200}
                     />
-                  </Link>
-                );
-              })}
+                  )}
+                </Link>
+              );
+            })}
         </div>
 
         <div className={`${style.seeAlLink} mobileNone`}>

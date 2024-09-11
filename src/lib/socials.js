@@ -17,7 +17,7 @@ export const socialArray = [
   {
     component: "5",
     w: 18,
-    h: 18,
+    h: 15,
     alt: "vb",
     href:
       "https://invite.viber.com/?g2=AQAIJfiGfhP%2B2FNndDYEDbFffHEBtkz2De4eshG0GKiW%2B%2FcbNzQzoSmQ33LknW6%2F&lang=en",

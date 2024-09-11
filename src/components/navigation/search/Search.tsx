@@ -177,14 +177,13 @@ const Search = () => {
           const [sportData] = sportNavigation.filter(
             (el: any) => el.id == searched.SPORT_ID
           );
-
-          const sportCategory = sportData || searched.SPORT_ID;
+          const sportCategory = sportData?.id || searched.SPORT_ID;
 
           const url =
             searched.TYPE === "playersInTeam"
-              ? `/player/${searched.URL}?playerId=${searched.ID}&sportId=${sport?.id}`
+              ? `/player/${searched.URL}?playerId=${searched.ID}&sportId=${sportCategory}`
               : searched.TYPE === "participants"
-              ? `/team/${searched.URL}?id=${searched.ID}&sportId=${sportCategory?.id}`
+              ? `/team/${searched.URL}?id=${searched.ID}&sportId=${sportCategory}`
               : `${sportCategory?.href}/${searched.COUNTRY_NAME}/${searched.URL}?seasonStageId=${stageId}&name=${searched.NAME}&tournamentId=${searched.ID}`;
 
           return (
