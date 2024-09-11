@@ -3,7 +3,7 @@ import xml2js from "xml2js";
 
 export const getPrediction = async () => {
   const url =
-    "https://api.allorigins.win/get?url=https://predictions.score.ge/rss/rss.xml";
+    "https://api.allorigins.win/get?url=http://predictions.score.ge/rss/rss.xml";
 
   try {
     // Fetch the XML data through the CORS proxy
