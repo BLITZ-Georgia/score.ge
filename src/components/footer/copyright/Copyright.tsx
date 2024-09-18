@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./style.module.css";
 
-const Copyright = ({ children }: { children?: React.ReactNode }) => {
+const Copyright = () => {
   return (
     <section className={`${style.copyright}  `}>
       <article className="container flex justify-between items-center">
