@@ -1,10 +1,14 @@
+"use client";
 import React from "react";
-import style from "./style.module.css";
 import PinnedLeagues from "./pinnedLeagues/PinnedLeagues";
-import UserTeams from "./userTeams/UserTeams";
 import Countries from "./countries/Countries";
+import dynamic from "next/dynamic";
 
 const UserLists = () => {
+  const UserTeams = dynamic(() => import("./userTeams/UserTeams"), {
+    ssr: false,
+  });
+
   return (
     <section className={`   w-full `}>
       <div className="bg-white w-full rounded-lg">

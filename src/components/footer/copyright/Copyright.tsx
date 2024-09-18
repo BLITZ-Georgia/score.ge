@@ -1,13 +1,18 @@
 import React from "react";
 import style from "./style.module.css";
 
-const Copyright = ({ children }: { children: React.ReactNode }) => {
+const Copyright = ({ children }: { children?: React.ReactNode }) => {
   return (
     <section className={`${style.copyright}  `}>
       <article className="container flex justify-between items-center">
         <h4>Copyright @ 2024</h4>
         <div className="flex items-center gap-x-2">
-          {children}
+          {/* {children} */}
+          <div className="topGeCounter">
+            <div id="top-ge-counter-container" data-site-id="117564"></div>
+            <script async src="//counter.top.ge/counter.js"></script>
+          </div>
+
           <svg
             width="32"
             height="32"

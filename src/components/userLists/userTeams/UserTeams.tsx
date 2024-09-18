@@ -11,7 +11,7 @@ import { useQuery } from "react-query";
 import { useLocalStorage } from "usehooks-ts";
 import { useAddToMyTeams } from "@/components/hooks/useAddToMyTeam";
 
-interface team {
+interface Team {
   image: string;
   name: string;
   id: string;
@@ -24,10 +24,7 @@ const UserTeams = () => {
   const [searchItems, setSearchItems] = useState<string | null | undefined>("");
   const sport = useSportIdHandler();
   const searchRef = useRef<HTMLInputElement>(null);
-  const [myTeamsList, setMyTeamsList] = useLocalStorage<team[]>(
-    "myTeamsList",
-    []
-  );
+  const [myTeamsList] = useLocalStorage<Team[]>("myTeamsList", []);
   const { addToMyTeam, removeFromMyTeam } = useAddToMyTeams();
 
   const showModal = () => {
@@ -89,7 +86,7 @@ const UserTeams = () => {
       </div>
 
       <div className={`${style.userListItems}`}>
-        {myTeamsList?.map((el: any) => {
+        {myTeamsList?.map((el: Team) => {
           return (
             <div className={`${style.favItem} px-2`} key={el.id}>
               <Link href={`/team/${el.url}?id=${el.id}&sportId=${el.sportId}`}>

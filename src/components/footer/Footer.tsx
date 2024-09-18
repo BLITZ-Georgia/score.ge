@@ -34,13 +34,7 @@ const Footer = ({ children }: { children?: React.ReactNode }) => {
         <FooterMenu title={"ANALYTICS"} menuItems={analyticsMenu} />
       </div>
       <Support />
-      <Copyright>
-        <div>
-          <div id="top-ge-counter-container" data-site-id="117564"></div>
-          <script async src="//counter.top.ge/counter.js"></script>
-        </div>
-        {children}
-      </Copyright>
+      <Copyright />
     </section>
   );
 };

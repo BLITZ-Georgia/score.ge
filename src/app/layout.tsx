@@ -5,6 +5,7 @@ import { QueryClientProviderHelper } from "@/components/helper/queryClient";
 import { ReduxToolkitProvider } from "@/components/helper/reduxProvider";
 import { ThemeProvider } from "@/components/store/ThemeContext";
 import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
+import { Footer } from "antd/es/layout/layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +27,6 @@ export default function RootLayout({
             <QueryClientProviderHelper>
               <GoogleTagManager gtmId="G-PPSM2KJ8JY" />
               <GoogleAnalytics gaId="G-PPSM2KJ8JY" />
-              <script async src="//counter.top.ge/counter.js"></script>
               {children}
             </QueryClientProviderHelper>
           </ReduxToolkitProvider>

@@ -19,7 +19,7 @@ const Favorites = () => {
       className={`${style.favorites}    w-full`}
       suppressHydrationWarning
     >
-      <article
+      <div
         className={`bg-white rounded-lg  p-3 w-full `}
         suppressHydrationWarning
       >
@@ -63,7 +63,7 @@ const Favorites = () => {
             </p>
           </div>
         )}
-      </article>
+      </div>
     </section>
   );
 };
