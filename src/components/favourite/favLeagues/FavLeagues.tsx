@@ -82,8 +82,8 @@ const FavLeague: React.FC<leagueProps> = ({
       const response = await axios.request(options);
       return response.data;
     } catch (error) {
-      console.error("Error fetching result events", error);
-      throw new Error("Error fetching result events");
+      console.error("Error fetching favorite events", error);
+      throw new Error("Error fetching favorite events");
     }
   }
 

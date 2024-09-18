@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useMemo, useCallback } from "react";
 import style from "./style.module.css";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useQuery } from "react-query";
 import { Skeleton } from "antd";
 import { useSportIdHandler } from "@/components/hooks/useSportIdHandler";
@@ -60,8 +60,14 @@ const Countries = () => {
       const response = await axios.request(options);
       return response.data;
     } catch (error) {
-      console.error("Error fetching featured products", error);
-      throw new Error("Error fetching featured products");
+      const axiosError = error as AxiosError;
+
+      if (axiosError.response?.status === 429) {
+        throw axiosError;
+      }
+
+      console.error("Error fetching tournament list ", error);
+      throw new Error("Error fetching tournament list");
     }
   }, [options]);
 
@@ -76,8 +82,24 @@ const Countries = () => {
       onSuccess: (data) => {
         dispatch(setAllTournament(data));
       },
+      retry: (failureCount, error) => {
+        const axiosError = error as AxiosError;
+        if (axiosError.response?.status === 429) {
+          return true;
+        }
+        return false;
+      },
+      retryDelay: (retryAttempt) => {
+        return 300;
+      },
     }
   );
+
+  // const filter = data?.DATA.filter(
+  //   (el: any) => el.LEAGUE_NAME === "Champions League"
+  // );
+
+  // console.log(filter);
 
   const result = useMemo(() => {
     const aggregatedData: { [key: number]: Country } = {};

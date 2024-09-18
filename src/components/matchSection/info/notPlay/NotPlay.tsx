@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./style.module.css";
 import { useSearchParams } from "next/navigation";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useQuery } from "react-query";
 import Image from "next/image";
 import { Skeleton } from "antd";
@@ -30,12 +30,27 @@ const NotPlay = () => {
         const response = await axios.request(options);
         return response.data;
       } catch (error) {
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response?.status === 429) {
+          throw axiosError;
+        }
+
         console.error("Error fetching missingPlayers events", error);
         throw new Error("Error fetching missingPlayers events");
       }
     },
     {
-      retry: false,
+      retry: (failureCount, error) => {
+        const axiosError = error as AxiosError;
+        if (axiosError.response?.status === 429) {
+          return true;
+        }
+        return false;
+      },
+      retryDelay: (retryAttempt) => {
+        return 300;
+      },
       refetchOnWindowFocus: false,
       enabled: !!eventId,
     }

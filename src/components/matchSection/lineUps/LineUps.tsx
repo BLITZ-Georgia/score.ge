@@ -3,7 +3,7 @@ import style from "./style.module.css";
 import LineUp from "./lineUp/LineUp";
 import Injuries from "./injuries/Injuries";
 import { Skeleton } from "antd";
-import axios, { isAxiosError } from "axios";
+import axios, { isAxiosError, AxiosError } from "axios";
 import { useQuery } from "react-query";
 import { useSearchParams } from "next/navigation";
 import StartingLineUp from "./startingLineUp/StartingLineUp";
@@ -58,12 +58,27 @@ const LineUps: React.FC<lineUpProp> = ({
         });
         return response.data;
       } catch (error) {
-        console.error("Error fetching result events", error);
-        throw new Error("Error fetching result events");
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response?.status === 429) {
+          throw axiosError;
+        }
+
+        console.error("Error fetching match lineUp ", error);
+        throw new Error("Error fetching match lineUp");
       }
     },
     {
-      retry: false,
+      retry: (failureCount, error) => {
+        const axiosError = error as AxiosError;
+        if (axiosError.response?.status === 429) {
+          return true;
+        }
+        return false;
+      },
+      retryDelay: (retryAttempt) => {
+        return 300;
+      },
       refetchOnWindowFocus: false,
       enabled: !!eventId,
     }

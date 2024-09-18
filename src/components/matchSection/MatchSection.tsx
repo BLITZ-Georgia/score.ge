@@ -9,7 +9,7 @@ import H2h from "./h2h/H2h";
 import Table from "../CountryLigue/table/Table";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useQuery } from "react-query";
 import { Skeleton } from "antd";
 
@@ -39,9 +39,26 @@ const MatchSection: React.FC = () => {
         const response = await axios.request(options);
         return response.data;
       } catch (error) {
-        console.error("Error fetching result events", error);
-        throw new Error("Error fetching result events");
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response?.status === 429) {
+          throw axiosError;
+        }
+        console.error("Error fetching event info events", error);
+        throw new Error("Error fetching event info");
       }
+    },
+    {
+      retry: (failureCount, error) => {
+        const axiosError = error as AxiosError;
+        if (axiosError.response?.status === 429) {
+          return true;
+        }
+        return false;
+      },
+      retryDelay: (retryAttempt) => {
+        return 300;
+      },
     }
   );
 
@@ -58,15 +75,36 @@ const MatchSection: React.FC = () => {
     },
   };
 
-  const h2hData = useQuery(["h2hData", eventId], async () => {
-    try {
-      const response = await axios.request(h2hOption);
-      return response.data;
-    } catch (error) {
-      console.error("Error fetching result events", error);
-      throw new Error("Error fetching result events");
+  const h2hData = useQuery(
+    ["h2hData", eventId],
+    async () => {
+      try {
+        const response = await axios.request(h2hOption);
+        return response.data;
+      } catch (error) {
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response?.status === 429) {
+          throw axiosError;
+        }
+
+        console.error("Error fetching h2h events", error);
+        throw new Error("Error fetching h2h2 events");
+      }
+    },
+    {
+      retry: (failureCount, error) => {
+        const axiosError = error as AxiosError;
+        if (axiosError.response?.status === 429) {
+          return true;
+        }
+        return false;
+      },
+      retryDelay: (retryAttempt) => {
+        return 300;
+      },
     }
-  });
+  );
 
   const summaryIncidents = {
     method: "GET",
@@ -81,15 +119,36 @@ const MatchSection: React.FC = () => {
     },
   };
 
-  const summaryData = useQuery(["summaryDataIncidents", eventId], async () => {
-    try {
-      const response = await axios.request(summaryIncidents);
-      return response.data;
-    } catch (error) {
-      console.error("Error fetching summary incidents events", error);
-      throw new Error("Error fetching summary incidents events");
+  const summaryData = useQuery(
+    ["summaryDataIncidents", eventId],
+    async () => {
+      try {
+        const response = await axios.request(summaryIncidents);
+        return response.data;
+      } catch (error) {
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response?.status === 429) {
+          throw axiosError;
+        }
+
+        console.error("Error fetching summary incidents events", error);
+        throw new Error("Error fetching summary incidents events");
+      }
+    },
+    {
+      retry: (failureCount, error) => {
+        const axiosError = error as AxiosError;
+        if (axiosError.response?.status === 429) {
+          return true;
+        }
+        return false;
+      },
+      retryDelay: (retryAttempt) => {
+        return 300;
+      },
     }
-  });
+  );
 
   if (isLoading || h2hData.isLoading) {
     return (

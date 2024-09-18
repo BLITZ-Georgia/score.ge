@@ -4,10 +4,9 @@ import style from "./style.module.css";
 import CountryLeagueEvents from "../../countryLeagueEvents/CountryLeagueEvents";
 import { useSelector } from "react-redux";
 import { useSearchParams } from "next/navigation";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useQuery } from "react-query";
 import { Skeleton } from "antd";
-import { IoFootballOutline } from "react-icons/io5";
 import { mutateLeagueMatchRounds } from "@/components/helper/mutateLeagueMatchesRounds";
 import { NoMatchFound } from "@/components/noMatchFound/NoMatchFound";
 
@@ -49,8 +48,16 @@ const LatestScores = ({
           successfulResponses.push(response.data.DATA);
         }
       } catch (error) {
-        console.error(`Error fetching data for page ${page}:`, error);
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response?.status === 429) {
+          throw axiosError;
+        }
+
         if (error) setShowMoreBtn(false);
+
+        console.error(`Error fetching data for page ${page}:`, error);
+        throw new Error("Error fetching latest matches");
       }
     }
 
@@ -61,14 +68,21 @@ const LatestScores = ({
     ["latestScoresLeague", sportId, seasonStageId, currentPage],
     () => fetchMatches(currentPage, currentPage + pages - 1),
     {
-      retry: false,
       refetchOnWindowFocus: false,
       enabled: !!seasonStageId,
       onSuccess: (data) => {
         setAllDataInfo((prevState) => [...prevState, ...data]);
       },
-      onError: (err) => {
-        console.log("Error occurred:", err);
+
+      retry: (failureCount, error) => {
+        const axiosError = error as AxiosError;
+        if (axiosError.response?.status === 429) {
+          return true;
+        }
+        return false;
+      },
+      retryDelay: (retryAttempt) => {
+        return 300;
       },
     }
   );

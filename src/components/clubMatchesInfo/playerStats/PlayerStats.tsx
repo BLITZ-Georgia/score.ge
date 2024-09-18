@@ -5,7 +5,7 @@ import { Skeleton, Tooltip } from "antd";
 import Player from "./player/Player";
 import { useSearchParams } from "next/navigation";
 import { useQuery } from "react-query";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { IoShirtOutline, IoFootballOutline } from "react-icons/io5";
 import { TbPlayFootball } from "react-icons/tb";
 
@@ -46,11 +46,30 @@ const PlayerStats = ({ countryName }: { countryName: string }) => {
         const response = await axios.request(options);
         return response.data;
       } catch (error) {
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response?.status === 429) {
+          throw axiosError;
+        }
+
         console.error("Error fetching result events", error);
         throw new Error("Error fetching result events");
       }
     },
-    { refetchOnWindowFocus: false }
+    {
+      refetchOnWindowFocus: false,
+      retry: (failureCount, error) => {
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response?.status === 429) {
+          return true;
+        }
+        return false;
+      },
+      retryDelay: (retryAttempt) => {
+        return 500;
+      },
+    }
   );
   const playersArray =
     data?.DATA.flatMap((el: any) => {

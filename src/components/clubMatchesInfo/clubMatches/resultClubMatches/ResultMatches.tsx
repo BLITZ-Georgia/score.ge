@@ -3,10 +3,9 @@ import React, { useState } from "react";
 import style from "./style.module.css";
 import { Select, Skeleton, Space } from "antd";
 import League from "@/components/allMatchInfoSection/leagueMatchlist/matchLeague/MatchLeague";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useQuery } from "react-query";
 import { useSearchParams } from "next/navigation";
-import { IoFootballOutline } from "react-icons/io5";
 import { mergeClubMatches } from "@/components/helper/mergeClubMatches";
 import { NoMatchFound } from "@/components/noMatchFound/NoMatchFound";
 
@@ -70,12 +69,27 @@ const ResultMatches = ({ pages }: { pages: number }) => {
 
         return combinedData;
       } catch (error) {
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response?.status === 429) {
+          throw axiosError;
+        }
+
         console.error("Error fetching result matches", error);
         throw new Error("Error fetching result matches");
       }
     },
     {
-      retry: false,
+      retry: (failureCount, error) => {
+        const axiosError = error as AxiosError;
+        if (axiosError.response?.status === 429) {
+          return true;
+        }
+        return false;
+      },
+      retryDelay: (retryAttempt) => {
+        return 500;
+      },
     }
   );
 

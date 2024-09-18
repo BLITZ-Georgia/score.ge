@@ -8,7 +8,7 @@ import { useSportIdHandler } from "@/components/hooks/useSportIdHandler";
 import { IoFootballOutline } from "react-icons/io5";
 import { TbPlayFootball } from "react-icons/tb";
 import { useSearchParams } from "next/navigation";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useQuery } from "react-query";
 import LastEventStatistic from "./lastEventsStatistic/LastEventStatistic";
 import { HiOutlineClock } from "react-icons/hi";
@@ -41,11 +41,29 @@ const LastPlayerEvents = () => {
         const response = await axios.request(options);
         return response.data;
       } catch (error) {
-        console.error("Error fetching result events", error);
-        throw new Error("Error fetching result events");
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response?.status === 429) {
+          throw axiosError;
+        }
+
+        console.error("Error fetching player  events", error);
+        throw new Error("Error fetching player events");
       }
     },
-    { refetchOnWindowFocus: false }
+    {
+      refetchOnWindowFocus: false,
+      retry: (failureCount, error) => {
+        const axiosError = error as AxiosError;
+        if (axiosError.response?.status === 429) {
+          return true;
+        }
+        return false;
+      },
+      retryDelay: (retryAttempt) => {
+        return 300;
+      },
+    }
   );
 
   if (isLoading) {

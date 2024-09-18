@@ -1,12 +1,12 @@
 import React from "react";
 import style from "./style.module.css";
-import axios from "axios";
 import { useQuery } from "react-query";
 import League from "@/components/allMatchInfoSection/leagueMatchlist/matchLeague/MatchLeague";
 import { useSearchParams } from "next/navigation";
 import { Skeleton } from "antd";
 import { useSportIdHandler } from "@/components/hooks/useSportIdHandler";
 import useGMTOffset from "@/components/hooks/useTimeZone";
+import axios, { AxiosError } from "axios";
 
 const Todaymatches = () => {
   const sportIdCheck = useSportIdHandler();
@@ -37,12 +37,28 @@ const Todaymatches = () => {
         const response = await axios.request(options);
         return response.data;
       } catch (error) {
-        console.error("Error fetching featured products", error);
-        throw new Error("Error fetching featured products");
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response?.status === 429) {
+          throw axiosError;
+        }
+
+        console.error("Error fetching today  matches", error);
+        throw new Error("Error fetching today  matches");
       }
     },
     {
       enabled: !!gmtOffset,
+      retry: (failureCount, error) => {
+        const axiosError = error as AxiosError;
+        if (axiosError.response?.status === 429) {
+          return true;
+        }
+        return false;
+      },
+      retryDelay: (retryAttempt) => {
+        return 200;
+      },
     }
   );
 

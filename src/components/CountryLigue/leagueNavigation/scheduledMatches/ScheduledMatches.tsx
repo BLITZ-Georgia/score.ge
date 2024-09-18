@@ -6,8 +6,7 @@ import { Skeleton } from "antd";
 import { useSearchParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import { useQuery } from "react-query";
-import axios from "axios";
-import { IoFootballOutline } from "react-icons/io5";
+import axios, { AxiosError } from "axios";
 import { mutateLeagueMatchRounds } from "@/components/helper/mutateLeagueMatchesRounds";
 import { NoMatchFound } from "@/components/noMatchFound/NoMatchFound";
 
@@ -50,9 +49,14 @@ const ScheduledMatches = ({
           successfulResponses.push(response.data.DATA);
         }
       } catch (error) {
-        console.error(`Error fetching data for page ${page}:`, error);
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response?.status === 429) {
+          throw axiosError;
+        }
 
         if (error) setShowMoreBtn(false);
+        throw new Error("Error fetching schedule matches");
       }
     }
     return successfulResponses;
@@ -62,14 +66,21 @@ const ScheduledMatches = ({
     ["scheduledMatchesLeague", sportId, seasonStageId, currentPage],
     () => fetchMatches(currentPage, currentPage + pages - 1),
     {
-      retry: false,
       refetchOnWindowFocus: false,
       enabled: !!seasonStageId,
       onSuccess: (data) => {
         setAllDataInfo((prevState) => [...prevState, ...data]);
       },
-      onError: (err) => {
-        console.log("Error occurred:", err);
+
+      retry: (failureCount, error) => {
+        const axiosError = error as AxiosError;
+        if (axiosError.response?.status === 429) {
+          return true;
+        }
+        return false;
+      },
+      retryDelay: (retryAttempt) => {
+        return 500;
       },
     }
   );

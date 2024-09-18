@@ -3,10 +3,9 @@ import React, { useState } from "react";
 import style from "./style.module.css";
 import { Select, Skeleton, Space } from "antd";
 import League from "@/components/allMatchInfoSection/leagueMatchlist/matchLeague/MatchLeague";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useQuery } from "react-query";
 import { useSearchParams } from "next/navigation";
-import { IoFootballOutline } from "react-icons/io5";
 import { mergeClubMatches } from "@/components/helper/mergeClubMatches";
 import { NoMatchFound } from "@/components/noMatchFound/NoMatchFound";
 
@@ -54,6 +53,7 @@ const FixturesMatches = ({ pages }: { pages: number }) => {
                 responses.push(response?.data?.DATA);
               }
             } catch (error) {
+              console.log(error);
               console.error(
                 `Error fetching data for page ${index + 1}:`,
                 error
@@ -69,12 +69,28 @@ const FixturesMatches = ({ pages }: { pages: number }) => {
 
         return combinedData;
       } catch (error) {
-        console.error("Error fetching result events", error);
-        throw new Error("Error fetching result events");
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response?.status === 429) {
+          throw axiosError;
+        }
+
+        console.error("Error fetching fixture events", error);
+        throw new Error("Error fetching fixture events");
       }
     },
     {
-      retry: false,
+      retry: (failureCount, error) => {
+        const axiosError = error as AxiosError;
+        console.log(axiosError);
+        if (axiosError.response?.status === 429) {
+          return true;
+        }
+        return false;
+      },
+      retryDelay: (retryAttempt) => {
+        return 500;
+      },
       refetchOnWindowFocus: false,
       enabled: !!teamId || !!sportIdCheck,
     }

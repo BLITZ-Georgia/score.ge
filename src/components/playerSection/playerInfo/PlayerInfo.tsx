@@ -4,7 +4,7 @@ import style from "./style.module.css";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useQuery } from "react-query";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { Skeleton } from "antd";
 import { getDatesItem, getAgeAndFormattedDate } from "@/utils/getDate";
 import { notFound } from "next/navigation";
@@ -36,12 +36,28 @@ const PlayerInfo = () => {
         const response = await axios.request(options);
         return response.data;
       } catch (error) {
-        console.error("Error fetching result events", error);
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response?.status === 429) {
+          throw axiosError;
+        }
+
+        console.error("Error fetching player info ", error);
         throw new Error("Error fetching player info");
       }
     },
     {
       refetchOnWindowFocus: false,
+      retry: (failureCount, error) => {
+        const axiosError = error as AxiosError;
+        if (axiosError.response?.status === 429) {
+          return true;
+        }
+        return false;
+      },
+      retryDelay: (retryAttempt) => {
+        return 300;
+      },
     }
   );
 

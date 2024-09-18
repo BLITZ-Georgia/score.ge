@@ -5,7 +5,7 @@ import ClubInfo from "./clubInfo/ClubInfo";
 import ClubMatches from "./clubMatches/ClubMatches";
 import PlayerStats from "./playerStats/PlayerStats";
 import { useSearchParams } from "next/navigation";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useQuery } from "react-query";
 import { Skeleton } from "antd";
 
@@ -36,9 +36,27 @@ const ClubMatchesInfo = () => {
         const response = await axios.request(options);
         return response.data;
       } catch (error) {
-        console.error("Error fetching result events", error);
-        throw new Error("Error fetching result events");
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response?.status === 429) {
+          throw axiosError;
+        }
+
+        console.error("Error fetching team info", error);
+        throw new Error("Error fetching team info");
       }
+    },
+    {
+      retry: (failureCount, error) => {
+        const axiosError = error as AxiosError;
+        if (axiosError.response?.status === 429) {
+          return true;
+        }
+        return false;
+      },
+      retryDelay: (retryAttempt) => {
+        return 300;
+      },
     }
   );
 

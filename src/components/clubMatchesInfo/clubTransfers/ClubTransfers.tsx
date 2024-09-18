@@ -5,7 +5,7 @@ import { Skeleton } from "antd";
 import Transfer from "./transfer/Transfer";
 import { useSearchParams } from "next/navigation";
 import { useQuery } from "react-query";
-import axios, { isAxiosError } from "axios";
+import axios, { AxiosError, isAxiosError } from "axios";
 import { IoFootballOutline } from "react-icons/io5";
 import { NoMatchFound } from "@/components/noMatchFound/NoMatchFound";
 
@@ -47,12 +47,27 @@ const ClubTransfers = () => {
         });
         return response.data;
       } catch (error) {
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response?.status === 429) {
+          throw axiosError;
+        }
+
         console.error("Error fetching player transfers", error);
         throw new Error("Error fetching player transfers");
       }
     },
     {
-      retry: false,
+      retry: (failureCount, error) => {
+        const axiosError = error as AxiosError;
+        if (axiosError.response?.status === 429) {
+          return true;
+        }
+        return false;
+      },
+      retryDelay: (retryAttempt) => {
+        return 300;
+      },
       refetchOnWindowFocus: false,
       enabled: !!teamId,
     }

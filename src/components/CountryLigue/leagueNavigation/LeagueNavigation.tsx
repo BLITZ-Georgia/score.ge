@@ -4,10 +4,10 @@ import style from "./style.module.css";
 import LeagueTitle from "./leagueTitle/LeagueTitle";
 import LeagueMenu from "./menu/LeagueMenu";
 import ParamInfo from "@/components/paramInfo/ParamInfo";
-import axios from "axios";
 import { useQuery } from "react-query";
 import { useSearchParams } from "next/navigation";
 import { Skeleton } from "antd";
+import axios, { AxiosError } from "axios";
 
 const LeagueNavigation = ({
   setActiveMenu,
@@ -39,9 +39,27 @@ const LeagueNavigation = ({
         const response = await axios.request(options);
         return response.data;
       } catch (error) {
-        console.error("Error fetching featured products", error);
-        throw new Error("Error fetching featured products");
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response?.status === 429) {
+          throw axiosError;
+        }
+
+        console.error("Error fetching league info", error);
+        throw new Error("Error fetching league info");
       }
+    },
+    {
+      retry: (failureCount, error) => {
+        const axiosError = error as AxiosError;
+        if (axiosError.response?.status === 429) {
+          return true;
+        }
+        return false;
+      },
+      retryDelay: (retryAttempt) => {
+        return 300;
+      },
     }
   );
 

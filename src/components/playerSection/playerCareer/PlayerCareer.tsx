@@ -5,7 +5,7 @@ import { Skeleton, Tooltip } from "antd";
 import Career from "./career/Career";
 import { useSearchParams } from "next/navigation";
 import { useQuery } from "react-query";
-import axios, { isAxiosError } from "axios";
+import axios, { AxiosError, isAxiosError } from "axios";
 import { IoShirtOutline, IoFootballOutline } from "react-icons/io5";
 import { TbPlayFootball } from "react-icons/tb";
 import { GiVibratingBall } from "react-icons/gi";
@@ -56,12 +56,27 @@ const PlayerCareer = () => {
         });
         return response.data;
       } catch (error) {
-        console.error("Error fetching result events", error);
-        throw new Error("Error fetching result events");
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response?.status === 429) {
+          throw axiosError;
+        }
+
+        console.error("Error fetching player career ", error);
+        throw new Error("Error fetching player career");
       }
     },
     {
-      retry: false,
+      retry: (failureCount, error) => {
+        const axiosError = error as AxiosError;
+        if (axiosError.response?.status === 429) {
+          return true;
+        }
+        return false;
+      },
+      retryDelay: (retryAttempt) => {
+        return 300;
+      },
       refetchOnWindowFocus: false,
       enabled: !!playerId,
     }

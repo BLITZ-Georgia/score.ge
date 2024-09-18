@@ -7,7 +7,6 @@ import { useQuery } from "react-query";
 import { Modal, Skeleton, Tooltip } from "antd";
 import Link from "next/link";
 import Image from "next/image";
-import { useSportIdHandler } from "@/components/hooks/useSportIdHandler";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useTheme } from "@/components/store/ThemeContext";
 import { sportNavigation } from "@/lib/sportNavigation";
@@ -22,7 +21,6 @@ const Search = () => {
   const [searchItems, setSearchItems] = useState<string | null | undefined>("");
   const [searchedData, setSearchedData] = useState<any[]>([]);
   const [open, setOpen] = useState(false);
-  const sport = useSportIdHandler();
   const { mode, toggleDarkMode } = useTheme();
   const [changeDarkMode, setChangeDarkMode] = useState(mode === "dark");
 
@@ -104,9 +102,6 @@ const Search = () => {
             },
           })}
         />
-        {/* {errors.search && (
-          <p className={style.error}>{errors.search.message}</p>
-        )} */}
 
         <div className="absolute right-3 top-2">
           <button type="submit" aria-label="Search">
@@ -205,7 +200,7 @@ const Search = () => {
                 <div className={style.searchInfo}>
                   <h4>{searched.NAME}</h4>
                   <p>
-                    {sportCategory?.text},<span>{searched.COUNTRY_NAME}</span>
+                    {sportData?.text} , <span>{searched.COUNTRY_NAME}</span>
                   </p>
                 </div>
               </article>

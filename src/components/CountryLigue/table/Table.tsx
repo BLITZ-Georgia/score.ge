@@ -6,7 +6,7 @@ import StandingTable from "./standingTable/StandingTable";
 import FormTable from "./formTable/FormTable";
 import TopScoresTable from "./topScoresTable/TopScores";
 import DrawTable from "./drawTable/DrawTable";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useQuery } from "react-query";
 import { Skeleton } from "antd";
 import { useSportIdHandler } from "@/components/hooks/useSportIdHandler";
@@ -45,12 +45,27 @@ const Matches = ({
         const response = await axios.request(options);
         return response.data;
       } catch (error) {
-        console.error("Error fetching draw table", error);
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response?.status === 429) {
+          throw new Error("Rate limit exceeded");
+        }
+
         throw new Error("Error fetching draw table");
       }
     },
     {
-      retry: false,
+      retry: (failureCount, error) => {
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response?.status === 429) {
+          return true;
+        }
+        return false;
+      },
+      retryDelay: (retryAttempt) => {
+        return 500;
+      },
       refetchOnWindowFocus: false,
     }
   );
