@@ -53,7 +53,9 @@ const Predictions = () => {
           {parsedData &&
             parsedData?.slice(0, 4).map((prediction: any, id: number) => {
               const predictionLinkUrl = prediction?.link;
-              const img = prediction?.description.match(
+              const contentEncoded = prediction["content:encoded"];
+
+              const img = contentEncoded.match(
                 /https?:\/\/[^"]+\.(jpg|jpeg|png|gif)/i
               );
               const title = prediction?.title;

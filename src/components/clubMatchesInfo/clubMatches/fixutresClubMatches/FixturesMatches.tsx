@@ -53,7 +53,6 @@ const FixturesMatches = ({ pages }: { pages: number }) => {
                 responses.push(response?.data?.DATA);
               }
             } catch (error) {
-              console.log(error);
               console.error(
                 `Error fetching data for page ${index + 1}:`,
                 error
@@ -82,7 +81,6 @@ const FixturesMatches = ({ pages }: { pages: number }) => {
     {
       retry: (failureCount, error) => {
         const axiosError = error as AxiosError;
-        console.log(axiosError);
         if (axiosError.response?.status === 429) {
           return true;
         }
