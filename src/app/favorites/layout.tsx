@@ -34,11 +34,7 @@ export default function FavoriteLayout({
       {children}
 
       <footer className="w-full  mt-5">
-        <Footer>
-          <div>
-            <div id="top-ge-counter-container" data-site-id="117564"></div>
-          </div>
-        </Footer>
+        <Footer />
       </footer>
     </>
   );

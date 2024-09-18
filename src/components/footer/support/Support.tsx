@@ -35,7 +35,7 @@ const supportImages = [
   {
     src: "/images/footer/sp1.svg",
     alt: "support-2",
-    width: 90,
+    width: 80,
     height: 22,
     displayStyle: "var(--showDark-element)",
     href: "https://inews.ge/",

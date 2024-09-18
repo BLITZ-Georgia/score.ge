@@ -1,7 +1,7 @@
 export const livescoreMenu = [
   {
     title: "Football",
-    href: "/",
+    href: "/football",
   },
 
   {
@@ -44,10 +44,11 @@ export const footballInernational = [
     href:
       "/football/World/World%20Championship?seasonStageId=GUncR9aR&name=World%20Championship&tournamentId=zeSHfCx3",
   },
-  // {
-  //   title: "Europe 2028",
-  //   href: "https://score.ge/favorites",
-  // },
+  {
+    title: "UEFA Nations League",
+    href:
+      "/football/Europe/UEFA%20Nations%20League?seasonStageId=QgTkX5FP&name=UEFA%20Nations%20League&tournamentId=bcZ6ZZ9O",
+  },
 ];
 
 export const footballLeagues = [
@@ -67,6 +68,16 @@ export const footballLeagues = [
     href:
       "/football/Germany/Bundesliga?seasonStageId=8l1ZdrsC&name=Bundesliga&tournamentId=6PcHXsLl",
   },
+  {
+    title: "Serie A",
+    href:
+      "/football/Italy/Serie%20A?seasonStageId=zDpS37lb&name=Serie%20A&tournamentId=YTpcH4Cr",
+  },
+  {
+    title: "LaLiga",
+    href:
+      "/football/Spain/LaLiga?seasonStageId=dINOZk9Q&name=LaLiga&tournamentId=A1MYWy8T",
+  },
 ];
 
 export const predictionsMenu = [
@@ -76,47 +87,40 @@ export const predictionsMenu = [
   },
   {
     title: "Current",
-    href: "https://predictions.score.ge/mimdinare",
+    href: "https://predictions.score.ge/forecasts/current",
   },
 
   {
-    title: "Completed",
-    href: "https://predictions.score.ge/dasrulebuli",
+    title: "Finished",
+    href: "https://predictions.score.ge/forecasts/finished",
   },
+
   {
-    title: "Football",
-    href: "https://predictions.score.ge/football",
-  },
-  {
-    title: "Basketball",
-    href: "https://predictions.score.ge/basketball",
-  },
-  {
-    title: "Tennis",
-    href: "https://predictions.score.ge/tennis",
+    title: "All Predictions",
+    href: "https://predictions.score.ge/forecasts",
   },
 ];
 
 export const analyticsMenu = [
   {
     title: "Football",
-    href: "https://predictions.score.ge/football",
+    href: "https://predictions.score.ge/news/football",
   },
 
   {
     title: "Basketball",
-    href: "https://predictions.score.ge/basketball",
+    href: "https://predictions.score.ge/news/basketball",
   },
   {
     title: "Tennis",
-    href: "https://predictions.score.ge/tennis",
+    href: "https://predictions.score.ge/news/tennis",
   },
   {
-    title: "Hockey",
-    href: "https://predictions.score.ge/hockey",
+    title: "Other Sports",
+    href: "https://predictions.score.ge/news/other-species",
   },
   {
-    title: "Other",
-    href: "https://predictions.score.ge/other-sports",
+    title: "All Analytics",
+    href: "https://predictions.score.ge/news",
   },
 ];

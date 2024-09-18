@@ -15,20 +15,20 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  params,
 }: Readonly<{
   children: React.ReactNode;
-  params: any;
 }>) {
   return (
     <html lang="en">
-      <script async src="//counter.top.ge/counter.js"></script>
-      <GoogleTagManager gtmId="G-PPSM2KJ8JY" />
-      <GoogleAnalytics gaId="G-PPSM2KJ8JY" />
       <ThemeProvider>
         <body className={inter.className}>
           <ReduxToolkitProvider>
-            <QueryClientProviderHelper>{children} </QueryClientProviderHelper>
+            <QueryClientProviderHelper>
+              <GoogleTagManager gtmId="G-PPSM2KJ8JY" />
+              <GoogleAnalytics gaId="G-PPSM2KJ8JY" />
+              <script async src="//counter.top.ge/counter.js"></script>
+              {children}
+            </QueryClientProviderHelper>
           </ReduxToolkitProvider>
         </body>
       </ThemeProvider>

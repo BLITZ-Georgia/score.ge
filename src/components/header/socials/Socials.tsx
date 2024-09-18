@@ -28,16 +28,22 @@ const Socials = ({ isNavFixed }: { isNavFixed: boolean }) => {
       <div
         className={`flex justify-between items-center gap-x-4 desktopYes ${style.socialItems}`}
       >
-        {socialArray.map((el, id) => (
-          <Link href={el.href} key={id} target="_blank">
-            <span
-              style={{
-                background: `url(/images/socials/soc-${el.component}.svg) top no-repeat`,
-                width: el.w,
-              }}
-            ></span>
-          </Link>
-        ))}
+        {socialArray.map((el, id) => {
+          return (
+            <Link
+              href={el.href}
+              key={id}
+              target={`${el.component === "4" ? "_self" : "_blank"}`}
+            >
+              <span
+                style={{
+                  background: `url(/images/socials/soc-${el.component}.svg) top no-repeat`,
+                  width: el.w,
+                }}
+              ></span>
+            </Link>
+          );
+        })}
       </div>
       <div className={`${style.blitz} transition-3 `}>
         <div

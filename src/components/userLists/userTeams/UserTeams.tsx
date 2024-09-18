@@ -88,8 +88,8 @@ const UserTeams = () => {
         <h2 className="ml-2  font-bold ">MY TEAMS</h2>
       </div>
 
-      <article className={`${style.userListItems}`}>
-        {myTeamsList.map((el: any) => {
+      <div className={`${style.userListItems}`}>
+        {myTeamsList?.map((el: any) => {
           return (
             <div className={`${style.favItem} px-2`} key={el.id}>
               <Link href={`/team/${el.url}?id=${el.id}&sportId=${el.sportId}`}>
@@ -112,7 +112,7 @@ const UserTeams = () => {
             </div>
           );
         })}
-      </article>
+      </div>
 
       <div
         className={`${style.teams} flex items-center mt-2  pl-2`}
