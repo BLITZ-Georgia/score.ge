@@ -10,36 +10,28 @@ import { useDispatch } from "react-redux";
 import { CountriesArrowIcon, CountriesListIcon } from "@/common/svg/home";
 import CountryItem from "./country/Country";
 import { usePinnedLeagues } from "@/components/hooks/usePineedLeagues";
+import { Country, League } from "@/types/countries";
 
-interface League {
-  LEAGUE_NAME: string;
-  SPORT_ID: number;
-  ACTUAL_TOURNAMENT_SEASON_ID: string;
-  COUNTRY_ID: string;
-  stageSeasonId: any;
-}
-
-interface Country {
-  COUNTRY_ID: number;
-  COUNTRY_NAME: string;
-  leagues: League[];
-}
+const INITIAL_COUNTRIES_SHOWN = 50;
+const CACHE_STALE_TIME = 60 * 60 * 1000; // 1 hour
+const CACHE_TIME = 12 * 60 * 60 * 1000; // 12 hours
+const RETRY_DELAY = 300;
 
 const Countries = () => {
-  const [listOpen, setListOpen] = useState<number[]>([]);
-  const [countrieShowNumber, setCountrieShowNumber] = useState(50);
+  const [listOpen, setListOpen] = useState<Set<number>>(new Set());
+  const [countrieShowNumber, setCountrieShowNumber] = useState(
+    INITIAL_COUNTRIES_SHOWN
+  );
   const sportIdCheck = useSportIdHandler();
   const dispatch = useDispatch();
   const { pinnedLeagueIds, addLeagueToLocalStorage } = usePinnedLeagues();
 
-  const sportChekedId = useMemo(
-    () => (sportIdCheck?.id ? Number(sportIdCheck?.id) : 1),
-    [sportIdCheck?.id]
-  );
+  const sportChekedId = useMemo(() => Number(sportIdCheck?.id ?? 1), [
+    sportIdCheck?.id,
+  ]);
 
-  // Memoize the options object
-  const options = useMemo(
-    () => ({
+  const fetchTournaments = useCallback(async () => {
+    const options = {
       method: "GET",
       url: "https://flashlive-sports.p.rapidapi.com/v1/tournaments/list",
       params: {
@@ -50,61 +42,39 @@ const Countries = () => {
         "x-rapidapi-key": process.env.NEXT_PUBLIC_FLASHSCORE_API,
         "x-rapidapi-host": "flashlive-sports.p.rapidapi.com",
       },
-    }),
-    [sportChekedId]
-  );
+    };
 
-  // Memoize the API request function
-  const fetchTournaments = useCallback(async () => {
     try {
       const response = await axios.request(options);
       return response.data;
     } catch (error) {
       const axiosError = error as AxiosError;
-
       if (axiosError.response?.status === 429) {
         throw axiosError;
       }
-
-      console.error("Error fetching tournament list ", error);
       throw new Error("Error fetching tournament list");
     }
-  }, [options]);
+  }, [sportChekedId]);
 
-  const { data, isLoading, isError, isFetched } = useQuery(
+  const { data, isLoading } = useQuery(
     ["stagesList", sportChekedId],
     fetchTournaments,
-
     {
       refetchOnWindowFocus: false,
-      staleTime: 60 * 60 * 1000,
-      cacheTime: 12 * 60 * 60 * 1000,
-      onSuccess: (data) => {
-        dispatch(setAllTournament(data));
-      },
-      retry: (failureCount, error) => {
-        const axiosError = error as AxiosError;
-        if (axiosError.response?.status === 429) {
-          return true;
-        }
-        return false;
-      },
-      retryDelay: (retryAttempt) => {
-        return 300;
-      },
+      staleTime: CACHE_STALE_TIME,
+      cacheTime: CACHE_TIME,
+      onSuccess: (data) => dispatch(setAllTournament(data)),
+      retry: (_, error) => (error as AxiosError).response?.status === 429,
+      retryDelay: () => RETRY_DELAY,
     }
   );
 
-  // const filter = data?.DATA.filter(
-  //   (el: any) => el.LEAGUE_NAME === "Champions League"
-  // );
-
-  // console.log(filter);
-
   const result = useMemo(() => {
-    const aggregatedData: { [key: number]: Country } = {};
+    if (!data?.DATA) return [];
 
-    data?.DATA.forEach((item: any) => {
+    const aggregatedData: Record<number, Country> = {};
+
+    data.DATA.forEach((item: any) => {
       const {
         COUNTRY_ID,
         COUNTRY_NAME,
@@ -122,8 +92,8 @@ const Countries = () => {
         };
       }
 
-      const stageId = STAGES.filter((el: any) => el.STAGE_NAME === "Main");
-      const stageSeasonId = stageId.length > 0 ? stageId[0] : STAGES[0];
+      const stageSeasonId =
+        STAGES.find((el: any) => el.STAGE_NAME === "Main") ?? STAGES[0];
 
       aggregatedData[COUNTRY_ID].leagues.push({
         LEAGUE_NAME,
@@ -139,86 +109,81 @@ const Countries = () => {
       .sort((a, b) => a.COUNTRY_NAME.localeCompare(b.COUNTRY_NAME));
   }, [data]);
 
-  const toggleCountryList = (countryId: number) => {
-    setListOpen((prevOpen) => {
-      if (prevOpen.includes(countryId)) {
-        return prevOpen.filter((id) => id !== countryId);
+  const toggleCountryList = useCallback((countryId: number) => {
+    setListOpen((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(countryId)) {
+        newSet.delete(countryId);
       } else {
-        return [...prevOpen, countryId];
+        newSet.add(countryId);
       }
+      return newSet;
     });
-  };
+  }, []);
 
   if (isLoading) {
     return (
       <div className="p-4 px-6">
-        <Skeleton active />{" "}
+        <Skeleton active />
       </div>
     );
   }
 
+  const sportName = sportIdCheck?.text?.toLowerCase() ?? "";
+
   return (
-    <section className={`p-4`}>
-      <div className={`${style.countriesTitle} flex items-center pb-3  `}>
-        <h2 className="  font-bold ">COUNTRIES</h2>
+    <section className="p-4">
+      <div className={`${style.countriesTitle} flex items-center pb-3`}>
+        <h2 className="font-bold">COUNTRIES</h2>
       </div>
       <section>
-        {result.slice(0, countrieShowNumber).map((countrie: any) => {
-          const isOpen = listOpen.includes(countrie.COUNTRY_ID);
-          const countryName = countrie.COUNTRY_NAME.toLowerCase();
-          const sportName = sportIdCheck
-            ? sportIdCheck?.text.toLowerCase()
-            : "";
+        {result.slice(0, countrieShowNumber).map((country) => {
+          const isOpen = listOpen.has(country.COUNTRY_ID);
+          const countryName = country.COUNTRY_NAME.toLowerCase();
+
           return (
             <div
               className={`${isOpen ? style.blockOpened : ""} mb-2`}
-              key={countrie.COUNTRY_ID}
+              key={country.COUNTRY_ID}
             >
               <article
-                className={`flex items-center justify-between  mb-1 ${style.country} cursor-pointer `}
-                onClick={() => toggleCountryList(countrie.COUNTRY_ID)}
+                className={`flex items-center justify-between mb-1 ${style.country} cursor-pointer`}
+                onClick={() => toggleCountryList(country.COUNTRY_ID)}
               >
-                <span>{countrie.COUNTRY_NAME}</span>
-                <div className={`${style.arrowIcon} `}>
+                <span>{country.COUNTRY_NAME}</span>
+                <div className={style.arrowIcon}>
                   <CountriesArrowIcon />
                 </div>
               </article>
 
-              <article className={`flex flex-col ${style.blockList} mb-2 `}>
-                {countrie.leagues.map((leagues: any) => {
-                  const leagueName = leagues.LEAGUE_NAME.toLowerCase()
-                    .split(" ")
-                    .join("-");
-                  const stageId = leagues.ACTUAL_TOURNAMENT_SEASON_ID;
-                  const name = leagues?.LEAGUE_NAME;
-                  const seasonId = leagues?.stageSeasonId?.STAGE_ID;
-
-                  return (
-                    <CountryItem
-                      countryName={countryName}
-                      sportName={sportName}
-                      sportChekedId={sportChekedId}
-                      leagueName={leagueName}
-                      name={name}
-                      seasonId={seasonId}
-                      stageId={stageId}
-                      key={leagues.ACTUAL_TOURNAMENT_SEASON_ID}
-                      pinnedLeagueIds={pinnedLeagueIds}
-                      addLeagueToLocalStorage={addLeagueToLocalStorage}
-                    />
-                  );
-                })}
+              <article className={`flex flex-col ${style.blockList} mb-2`}>
+                {country.leagues.map((league) => (
+                  <CountryItem
+                    key={league.ACTUAL_TOURNAMENT_SEASON_ID}
+                    countryName={countryName}
+                    sportName={sportName}
+                    sportChekedId={sportChekedId}
+                    leagueName={league.LEAGUE_NAME.toLowerCase()
+                      .split(" ")
+                      .join("-")}
+                    name={league.LEAGUE_NAME}
+                    seasonId={league.stageSeasonId.STAGE_ID}
+                    stageId={league.ACTUAL_TOURNAMENT_SEASON_ID}
+                    pinnedLeagueIds={pinnedLeagueIds}
+                    addLeagueToLocalStorage={addLeagueToLocalStorage}
+                  />
+                ))}
               </article>
             </div>
           );
         })}
       </section>
-      {countrieShowNumber === 50 && (
+      {countrieShowNumber === INITIAL_COUNTRIES_SHOWN && (
         <div
           className={style.showMoreBtn}
           onClick={() => setCountrieShowNumber(result.length)}
         >
-          <p className="flex items-center">Show More </p>
+          <p className="flex items-center">Show More</p>
           <span>
             <CountriesListIcon />
           </span>
