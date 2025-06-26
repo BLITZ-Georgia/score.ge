@@ -1,36 +1,34 @@
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
 
-const formData = require("form-data");
-const Mailgun = require("mailgun.js");
-const mailgun = new Mailgun(formData);
-const mg = mailgun.client({
-  username: "api",
-  key: process.env.MAILGUN_API_KEY,
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function POST(req, res) {
+export async function POST(req) {
   const { username, email, message } = await req.json();
 
-  const mailData = {
-    from: email,
-    to: "info@blitz.ge",
-    subject: `Message from  ${username}`,
-    html: `
+  try {
+    const { data, error } = await resend.emails.send({
+      from: 'onboarding@resend.dev',
+      to: 'info@blitz.ge',
+      subject: `Message from ${username}`,
+      html: `
         <p><strong>Name:</strong> ${username}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Message:</strong></p>
         <p>${message}</p>
       `,
-  };
+    });
 
-  try {
-    await mg.messages.create(process.env.MAILGUN_DOMAIN, mailData);
+    console.log(error);
+    console.log(data);
+
+    if (error) {
+      return NextResponse.json({ status: "something went wrong" }, { status: 500 });
+    }
+
     return NextResponse.json({ status: "success sent" }, { status: 200 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json(
-      { status: "something went wrong" },
-      { status: 500 }
-    );
+    return NextResponse.json({ status: "something went wrong" }, { status: 500 });
   }
 }
